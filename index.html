@@ -2,162 +2,598 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title data-i18n="title">Nathalia Gómez — UX/UI &amp; Product Designer</title>
+<title data-i18n="page.title">Nathalia Gómez — UX/UI & Product Designer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portfolio of Nathalia Gómez, UX/UI & Product Designer based in Italy. Case studies: Realidad Au Pair and Angel Fashion." data-i18n-content="page.description">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;0,800;1,500;1,600;1,700&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Poiret+One&display=swap" rel="stylesheet">
 <style>
-:root{ --plum:#502d55; --cream:#fffefc; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px); }
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{margin:0;background:var(--cream);font-family:'Atkinson Hyperlegible Next',Helvetica,Arial,sans-serif;}
-img{max-width:100%;display:block;width:100%;height:auto;}
-a{color:inherit;}
-.page-block{ position:relative; width:100%; line-height:0; }
-.hot{ position:absolute; display:block; z-index:5; cursor:pointer; -webkit-tap-highlight-color: rgba(80,45,85,0.15); }
-.navspot{ border-radius:4px; } .btnspot{ border-radius:10px; } .cardspot{ border-radius:14px; } .linkspot{ border-radius:8px; }
-/* Hover only on devices that really hover (mouse), so taps on mobile don't leave a "stuck" highlight */
-@media (hover:hover){
-  .navspot:hover{ background:rgba(80,45,85,0.06); }
-  .btnspot:hover{ background:rgba(255,255,255,0.10); }
-  .cardspot:hover{ background:rgba(80,45,85,0.04); }
-  .linkspot:hover{ background:rgba(80,45,85,0.06); }
+:root{
+  --plum:#502d55; --plum-mid:#8f7993; --lilac:#b8aab8; --lilac-soft:#dbd3dc;
+  --chip:#8d7f92; --chip-dark:#5f4c66;
+  --cream:#fffefc; --ink:#3a2b3f; --line:#5a4f5c; --board:#f1efee; --coral:#c4644f;
+  --display:'Instrument Sans','Atkinson Hyperlegible Next',Helvetica,Arial,sans-serif;
+  --text:'Atkinson Hyperlegible Next',Helvetica,Arial,sans-serif;
+  --gutter:clamp(16px,4vw,48px);
 }
-/* Mobile email link: no hover / tap feedback, so it doesn't look like a button */
-.mailspot{ border-radius:8px; cursor:default; -webkit-tap-highlight-color:transparent; }
-.mailspot:hover, .mailspot:active{ background:none; }
-/* Visible focus ring for keyboard users */
-.hot:focus-visible, .lang-btn:focus-visible, .desktop-nav a:focus-visible, .mobmenu a:focus-visible, .mobmenu-close:focus-visible{ outline:3px solid var(--plum); outline-offset:2px; }
-
-/* Screen-reader text: the full copy of each screen (the screens themselves are images) */
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:80px; }
+@media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } }
+@media (max-width:759px){ html{ scroll-padding-top:0; } }
+main{ overflow-x:clip; }
+body{ margin:0; background:var(--cream); color:var(--ink); font-family:var(--text); font-size:17px; line-height:1.5; overflow-x:hidden; }
+img{ max-width:100%; height:auto; display:block; }
+a{ color:inherit; }
+h1,h2,h3,h4,p,ul,figure,blockquote{ margin:0; }
+u{ text-underline-offset:3px; text-decoration-thickness:1px; }
 .sr-only{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-.sr-only *{ white-space:normal; }
-.sr-d{ display:none; }
-@media (min-width:760px){ .sr-d{ display:block; } }
+:focus-visible{ outline:3px solid var(--plum); outline-offset:3px; }
+.skip-link{ position:absolute; left:16px; top:-60px; z-index:300; background:var(--plum); color:var(--cream); padding:10px 16px; border-radius:8px; text-decoration:none; }
+.skip-link:focus{ top:12px; }
 
-.img-d{ display:none; } .img-m{ display:block; }
-.layer-d{ display:none; } .layer-m{ display:block; position:absolute; inset:0; }
-@media (min-width:760px){
-  .img-d{ display:block; } .img-m{ display:none; }
-  .layer-d{ display:block; position:absolute; inset:0; } .layer-m{ display:none; }
-}
-.mobile-only{ display:block; }
-@media (min-width:760px){ .mobile-only{ display:none; } }
-
-.cs-d{ display:none; } .cs-m{ display:block; }
-@media (min-width:760px){ .cs-d{ display:block; } .cs-m{ display:none; } }
-#realidad-aupair{ margin-top:70px; }
-.cs-slice{ position:relative; line-height:0; }
-
-/* Sticky DESKTOP top nav — stays visible while scrolling (sticky, not fixed: avoids duplicate-paint issues some renderers have with fixed+media-query) */
-.desktop-nav{
-  display:none; position:sticky; top:0; z-index:140;
-  background:var(--cream); border-bottom:1px solid rgba(80,45,85,0.12);
-  padding:20px 32px; align-items:center; justify-content:space-between;
-  font-family:'Atkinson Hyperlegible Next';
-}
+/* ── Navigation ── */
+.desktop-nav{ display:none; position:sticky; top:0; z-index:140; background:var(--cream); border-bottom:1px solid rgba(80,45,85,0.12);
+  padding:20px 32px; align-items:center; justify-content:space-between; }
 .desktop-nav .links{ display:flex; gap:32px; }
 .desktop-nav a{ color:var(--plum); text-decoration:none; font-size:19px; position:relative; padding:4px 0; }
 .desktop-nav a::after{ content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px; background:var(--plum); transform:scaleX(0); transition:transform .2s ease; }
 .desktop-nav a:hover::after{ transform:scaleX(1); }
+.nav-right{ display:flex; align-items:center; gap:20px; }
 .desktop-nav .tag{ color:var(--plum); font-size:19px; }
-@media (min-width:760px){
-  .desktop-nav{ display:flex; }
-}
+@media (min-width:760px){ .desktop-nav{ display:flex; } }
 
-/* Global fixed hamburger — MOBILE only */
-.fixed-burger{
-  display:none; position:fixed; top:calc(18px + env(safe-area-inset-top,0px)); right:18px; z-index:150;
+.fixed-burger{ display:none; position:fixed; top:calc(18px + env(safe-area-inset-top,0px)); right:18px; z-index:150;
   width:52px; height:52px; border-radius:50%; background:var(--plum); border:none; cursor:pointer;
-  box-shadow:0 6px 16px rgba(0,0,0,0.25); align-items:center; justify-content:center;
-}
+  box-shadow:0 6px 16px rgba(0,0,0,0.25); align-items:center; justify-content:center; }
 .fixed-burger svg{ width:24px; height:24px; }
 @media (max-width:759px){ .fixed-burger{ display:flex; } }
 
-.mobmenu{ position:fixed; inset:0; background:var(--cream); z-index:160; display:none; flex-direction:column; padding: calc(28px + env(safe-area-inset-top,0px)) 30px 30px; }
-.mobmenu:target{ display:flex; }
-.mobmenu-close{ align-self:flex-end; background:none; border:none; font-size:32px; color:var(--plum); cursor:pointer; }
-.mobmenu a{ font-family:'Atkinson Hyperlegible Next'; font-size:30px; color:var(--plum); text-decoration:none; padding:18px 0; border-bottom:1px solid rgba(80,45,85,0.15); }
+.mobmenu{ position:fixed; inset:0; background:var(--cream); z-index:160; display:none; flex-direction:column; padding:calc(28px + env(safe-area-inset-top,0px)) 30px 30px; overflow-y:auto; }
+.mobmenu:target, .mobmenu.open{ display:flex; }
+.mobmenu .mobmenu-close{ align-self:flex-end; border:none; font-size:40px; line-height:1; padding:0 6px; }
+.mobmenu a{ font-size:30px; color:var(--plum); text-decoration:none; padding:18px 0; border-bottom:1px solid rgba(80,45,85,0.15); }
 .mobmenu a.work-link{ font-style:italic; font-weight:700; }
 .mobmenu a.active{ font-weight:800; text-decoration:underline; }
 
-/* Language switcher */
-.lang-switch{ display:flex; align-items:center; gap:6px; font-family:'Atkinson Hyperlegible Next'; }
-.lang-btn{ background:none; border:none; color:var(--plum); font-size:15px; font-weight:700; cursor:pointer; padding:2px 3px; opacity:0.45; }
+.lang-switch{ display:flex; align-items:center; gap:6px; }
+.lang-btn{ background:none; border:none; color:var(--plum); font-family:var(--text); font-size:15px; font-weight:700; cursor:pointer; padding:4px 5px; opacity:0.55; }
 .lang-btn.active{ opacity:1; text-decoration:underline; }
 .lang-sep{ color:var(--plum); opacity:0.4; font-size:13px; }
 .mobile-lang{ margin-top:28px; justify-content:center; }
 .mobile-lang .lang-btn{ font-size:22px; }
+
+/* ── Shared pieces ── */
+.btn{ display:inline-flex; align-items:center; justify-content:center; background:var(--plum); color:var(--cream); text-decoration:none;
+  font-weight:700; font-size:18px; padding:12px 34px; border-radius:7px; box-shadow:0 5px 6px rgba(60,40,65,0.28); text-align:center; }
+.btn-lg{ min-width:min(240px,42vw); padding:13px 24px; font-size:21px; }
+@media (hover:hover){ .btn:hover{ background:#61396a; } }
+.btn-row{ display:flex; justify-content:space-around; gap:20px; flex-wrap:wrap; }
+.band{ position:relative; z-index:2; background:var(--lilac); color:var(--ink); text-align:center; padding:14px var(--gutter); font-size:clamp(17px,2vw,22px); }
+.band-italic, .band-italic p{ font-style:italic; font-weight:600; }
+.band-left{ text-align:left; }
+.giant{ font-family:var(--display); font-weight:700; color:var(--plum); line-height:.92; letter-spacing:-0.035em; font-size:clamp(68px,13vw,180px); }
+.giant-condensed{ font-stretch:75%; letter-spacing:-0.01em; }
+.h-display{ font-family:var(--display); font-stretch:75%; font-weight:700; color:var(--plum); font-size:clamp(42px,6vw,64px); line-height:1; letter-spacing:-0.01em; }
+.lead{ font-size:clamp(18px,2vw,22px); }
+.intro{ font-style:italic; font-weight:700; }
+.flower{ position:absolute; pointer-events:none; }
+
+/* ── Home ── */
+.home{ position:relative; overflow:hidden; }
+.top-banner{ background:var(--plum); color:var(--cream); font-style:italic; text-align:center; font-size:clamp(16px,2.1vw,25px); padding:12px var(--gutter); position:relative; z-index:2; }
+.hero{ position:relative; z-index:1; display:grid; grid-template-columns:1fr auto; align-items:end; padding:clamp(24px,5vw,60px) var(--gutter) clamp(40px,5vw,64px); max-width:1400px; margin:0 auto; }
+.hero-title{ display:contents; }
+.hero-portfolio{ grid-column:1 / -1; font-family:var(--display); font-weight:700; color:var(--plum); font-size:clamp(84px,16vw,240px); line-height:.9; letter-spacing:-0.04em; }
+.hero-name{ grid-column:2; grid-row:2 / span 2; font-family:'Poiret One',var(--text); font-weight:400; color:var(--plum); font-size:clamp(48px,7.5vw,112px); line-height:1.05; text-align:right; }
+.hero-name span{ display:block; }
+.hero-role{ display:none; }
+.hero .btn{ grid-column:1; grid-row:3; justify-self:center; margin-left:30%; }
+.flower-rose{ left:-3%; top:33%; width:clamp(150px,30vw,420px); }
+.flower-hydrangea{ right:-2%; top:7%; width:clamp(120px,26vw,380px); }
+
+/* ── Work ── */
+.work{ padding-top:clamp(56px,8vw,110px); }
+.work .giant{ padding:0 var(--gutter) clamp(40px,7vw,100px); max-width:1400px; margin:0 auto; }
+.cards{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(20px,4vw,48px); max-width:1400px; margin:0 auto; padding:clamp(28px,4vw,40px) var(--gutter) 0; }
+.card{ position:relative; overflow:hidden; border:1.5px solid var(--line); border-radius:22px; padding:clamp(70px,9vw,110px) clamp(18px,2.5vw,34px) 22px; display:flex; flex-direction:column; align-items:flex-start; gap:12px; background:var(--cream); }
+.card > *{ position:relative; z-index:1; }
+.card-title{ font-family:var(--display); font-stretch:75%; font-weight:700; color:var(--plum); font-size:clamp(38px,4.6vw,62px); line-height:1; letter-spacing:-0.01em; }
+.card-sub{ font-size:clamp(16px,1.6vw,19px); }
+.card .btn{ align-self:center; margin:14px 0 18px; font-size:clamp(18px,2vw,24px); }
+.card-tags{ align-self:center; text-align:center; font-size:clamp(14px,1.4vw,17px); }
+.card-thumb{ position:absolute !important; z-index:0 !important; right:0; top:0; width:clamp(90px,11vw,150px); }
+.card-aupair .card-title, .card-aupair .card-sub{ max-width:78%; }
+.card-bg{ position:absolute !important; z-index:0 !important; inset:0; width:100%; height:100%; object-fit:cover; opacity:.16; }
+
+/* ── About ── */
+.about{ position:relative; max-width:1400px; margin:0 auto; padding:clamp(70px,10vw,140px) 0 clamp(40px,5vw,60px); }
+.about-top{ display:grid; grid-template-columns:1fr minmax(240px,40%); gap:clamp(20px,4vw,48px); align-items:center; padding:0 var(--gutter); }
+.about-text .lead{ margin-top:24px; }
+.portrait{ width:100%; max-width:520px; justify-self:end; border-radius:50%; }
+.about .h-display{ padding:0 var(--gutter); margin-top:clamp(40px,6vw,80px); }
+.chips{ list-style:none; padding:24px var(--gutter) 0; display:flex; flex-wrap:wrap; justify-content:space-around; gap:16px; }
+.chip{ background:var(--chip); color:var(--cream); border-radius:999px; padding:6px 26px; font-size:clamp(17px,2vw,24px); }
+.chip-dark{ background:var(--chip-dark); }
+.about blockquote{ margin-top:clamp(36px,5vw,56px); }
+.about > .lead{ padding:16px var(--gutter) 0; }
+.cta-about{ position:relative; padding:clamp(80px,12vw,150px) var(--gutter) 0; }
+.flower-about{ right:-1%; bottom:-10px; width:clamp(120px,18vw,240px); }
+
+/* ── CTA with arrow ── */
+.cta-end{ margin-top:clamp(60px,9vw,120px); }
+.cta-note{ display:flex; align-items:flex-start; gap:6px; font-style:italic; font-weight:700; font-size:clamp(14px,1.5vw,17px); margin-left:clamp(0px,8vw,110px); max-width:520px; }
+.cta-arrow{ width:clamp(34px,4vw,50px); margin-top:4px; margin-bottom:-38px; position:relative; z-index:1; }
+.cta-end .btn-row{ margin-top:6px; }
+
+/* ── Case studies ── */
+.case{ padding-top:clamp(70px,9vw,120px); }
+.case-head{ text-align:center; }
+.case-title{ font-family:var(--display); font-stretch:75%; font-weight:700; color:var(--plum); font-size:clamp(54px,9vw,120px); line-height:1; letter-spacing:-0.01em; padding:0 var(--gutter) 14px; }
+.info-box{ list-style:none; text-align:left; max-width:980px; margin:28px auto 36px; padding:14px 22px; border:1.5px solid var(--line); border-radius:22px; font-size:16px; }
+@media (max-width:1020px){ .info-box{ margin-left:var(--gutter); margin-right:var(--gutter); } }
+.bleed{ width:100%; }
+.wrap{ max-width:1060px; margin:0 auto; padding:0 var(--gutter); }
+.wrap > * + *{ margin-top:22px; }
+.duo{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:clamp(36px,5vw,60px) calc(-1 * min(var(--gutter), 30px)) 0; }
+.box{ border:1.5px solid var(--line); border-radius:22px; padding:22px clamp(18px,2.5vw,30px); }
+.box > * + *{ margin-top:16px; }
+.box-wide{ padding:26px clamp(18px,3vw,34px); }
+.h-box{ font-family:var(--display); font-stretch:75%; font-weight:700; color:var(--plum); font-size:clamp(38px,4.4vw,52px); line-height:1; letter-spacing:-0.01em; }
+.h-section{ font-family:var(--display); font-stretch:75%; font-weight:700; color:var(--plum); font-size:clamp(38px,5.4vw,62px); line-height:1.05; letter-spacing:-0.01em; text-align:center; padding-top:clamp(50px,7vw,90px); }
+.wrap > .h-section{ margin-top:0; margin-bottom:clamp(14px,3vw,36px); }
+.h-sub{ font-style:italic; font-weight:700; color:var(--plum); text-align:center; text-decoration:underline; text-underline-offset:5px; text-decoration-thickness:1.5px; font-size:clamp(18px,2vw,21px); }
+.wrap > .h-sub{ padding-top:clamp(28px,5vw,60px); }
+.bullets{ padding-left:22px; }
+.bullets li + li{ margin-top:12px; }
+.bullets li::marker{ color:var(--plum); }
+.bullets strong, .info-box strong, .insight strong{ color:var(--plum); }
+.insight{ display:flex; gap:10px; align-items:flex-start; }
+.insight-icon{ flex:0 0 auto; width:26px; height:26px; color:var(--plum); margin-top:-1px; }
+.posts{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(10px,2.5vw,32px); }
+.brand-logo{ margin:12px auto 0; width:clamp(120px,14vw,170px); }
+.donuts{ display:grid; grid-template-columns:1fr 1fr; gap:24px; padding:20px clamp(18px,4vw,70px) 26px; }
+.donuts-title{ grid-column:1 / -1; text-align:center; font-style:italic; font-weight:700; color:var(--plum); }
+.donuts.box > * + *{ margin-top:0; }
+.donut{ display:flex; flex-direction:column; align-items:center; gap:14px; }
+.donut svg{ width:clamp(110px,15vw,150px); transform:rotate(-90deg); }
+.donut circle{ fill:none; stroke-width:9; }
+.donut .track{ stroke:#e6e5e8; }
+.donut .arc{ stroke:var(--plum); stroke-linecap:round; }
+.donut-light .arc{ stroke:#6b4e72; }
+.donut text{ transform:rotate(90deg); transform-origin:50px 50px; font-family:var(--text); font-weight:700; font-size:15px; fill:#1d1720; }
+.donut figcaption{ align-self:stretch; }
+.personas{ display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:1800px; margin:28px auto 0; padding:0 12px; }
+.personas + .wrap{ margin-top:22px; }
+.journey, .shot{ margin-left:auto; margin-right:auto; }
+.journey{ width:min(100%,760px); }
+.screens{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,6vw,90px); padding:clamp(20px,4vw,60px) clamp(0px,4vw,40px); }
+.boards{ background:var(--board); border-radius:4px; margin-left:calc(-1 * min(var(--gutter), 40px)); margin-right:calc(-1 * min(var(--gutter), 40px)); padding:10px clamp(14px,3vw,40px); }
+.board{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(14px,3vw,40px); padding:clamp(18px,3vw,36px) 0; }
+.board + .board{ border-top:12px solid var(--cream); }
+.board-side{ min-width:0; display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(12px,2.5vw,30px); align-items:center; }
+.board-wide .board-side:last-child{ grid-template-columns:minmax(0,1fr); }
+.board-wide .board-side:last-child img{ width:min(100%,400px); }
+.board-label{ color:var(--coral); font-size:clamp(16px,1.8vw,20px); margin-bottom:10px; }
+.board-notes ul{ list-style:none; padding:0; color:#4b4448; font-size:clamp(15px,1.6vw,18px); }
+.board-notes li + li{ margin-top:4px; }
+.wrap > .shot{ margin-top:22px; }
+.case > .shot{ width:100%; margin-top:22px; }
+.case > .shot + .wrap, .case > .bleed + .wrap, .case > .wrap + .bleed{ margin-top:clamp(30px,5vw,60px); }
+.case > .wrap + .shot{ margin-top:22px; }
+
+.bench{ text-align:center; }
+.bench-title{ display:inline-block; background:#d27a5f; color:#fff; font-weight:700; font-size:clamp(17px,2vw,22px); border-radius:10px; padding:4px 18px; min-width:min(420px,70%); text-align:left; }
+.bench-scroll{ position:relative; overflow-x:auto; margin-top:22px; }
+.bench table{ border-collapse:separate; border-spacing:0; margin:0 auto; border:1px solid #c9c4c6; border-radius:12px; overflow:hidden; min-width:560px; }
+.bench th, .bench td{ border-right:1px solid #c9c4c6; border-bottom:1px solid #c9c4c6; padding:6px; background:#fff; }
+.bench tr > *:last-child{ border-right:0; }
+.bench tbody tr:last-child > *{ border-bottom:0; }
+.bench th[scope=row], .bench thead th:first-child{ background:#efc8b9; color:#2c2228; font-size:14px; font-weight:700; width:130px; }
+.bench tbody tr:nth-child(odd) th[scope=row]{ background:#f6ddd2; }
+.bench-logo{ width:110px; margin:0 auto; }
+.bench-icon{ width:52px; margin:0 auto; }
+.bench-legend{ list-style:none; padding:0; margin-top:18px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px 28px; font-weight:700; font-size:14px; color:#2c2228; }
+.bench-legend li{ display:flex; align-items:center; gap:10px; }
+.bench-legend .bench-icon{ width:42px; }
+
+/* ── Contact ── */
+.contact{ position:relative; max-width:1400px; margin:0 auto; padding:clamp(80px,11vw,150px) 0 clamp(60px,8vw,110px); }
+.contact > .giant, .contact > .intro, .contact > .lead{ padding:0 var(--gutter); }
+.contact > .intro{ margin-top:14px; font-size:clamp(18px,2vw,22px); }
+.contact > .lead{ margin-top:10px; max-width:1000px; }
+.flower-contact{ right:0; top:clamp(60px,9vw,130px); width:clamp(90px,14vw,190px); }
+.contact-list{ list-style:none; padding:clamp(40px,6vw,80px) var(--gutter); margin:0 auto; width:max-content; max-width:100%; display:grid; gap:clamp(24px,3vw,30px); }
+.contact-list a{ display:flex; align-items:center; gap:22px; text-decoration:none; font-size:clamp(17px,2vw,22px); overflow-wrap:anywhere; }
+.contact-list img{ width:clamp(46px,4.5vw,64px); flex:0 0 auto; }
+@media (hover:hover){ .contact-list a:not(.mail-link):hover span{ text-decoration:underline; } }
+.contact-list .mail-link{ cursor:default; -webkit-tap-highlight-color:transparent; }
+.contact .band{ margin-bottom:clamp(60px,10vw,140px); }
+
+/* ── Mobile ── */
+@media (max-width:759px){
+  body{ font-size:16px; }
+  .home{ display:grid; grid-template-columns:1fr 1fr; }
+  .home > *, .home .hero > *, .home .hero-title > *{ grid-column:1 / -1; grid-row:auto; }
+  .hero, .hero-title{ display:contents; }
+  .hero-portfolio{ order:1; font-size:clamp(64px,22vw,120px); padding:100px 16px 20px; }
+  .top-banner{ order:2; background:var(--plum-mid); text-align:left; font-size:20px; padding:16px; }
+  .home .flower{ position:static; order:3; }
+  .home .flower-rose{ grid-column:1; width:56vw; max-width:none; margin-left:-3vw; align-self:start; }
+  .home .flower-hydrangea{ grid-column:2; width:36vw; justify-self:end; align-self:end; margin-top:30vw; }
+  .hero-name{ order:4; text-align:center; font-size:clamp(40px,12.5vw,70px); white-space:nowrap; padding:18px 8px 0; }
+  .hero-name span{ display:inline; }
+  .hero-role{ order:5; display:block; text-align:center; font-size:clamp(20px,6vw,26px); color:var(--plum); margin-top:10px; }
+  .hero .btn{ order:6; justify-self:center; margin:24px auto 52px; font-size:24px; padding:14px 0; width:62%; }
+  .home > .band{ order:7; text-align:left; font-size:21px; padding:24px 16px; }
+  .cta-arrow{ display:none; }
+  .work .giant{ font-size:clamp(64px,19vw,100px); padding-bottom:24px; }
+  .work .band{ text-align:left; font-size:19px; }
+  .cards{ grid-template-columns:1fr; padding-top:30px; }
+  .card{ padding-top:44px; }
+  .about-top{ grid-template-columns:1fr; }
+  .portrait{ order:2; justify-self:center; width:80%; margin-top:36px; }
+  .about .giant{ font-size:clamp(68px,20vw,100px); }
+  .about .h-display{ text-align:center; }
+  .chips{ justify-content:center; gap:14px 30px; }
+  .about blockquote{ text-align:left; }
+  .flower-about{ display:none; }
+  .cta-note{ margin-left:8px; }
+  .btn-row{ justify-content:space-between; gap:12px; }
+  .btn-lg{ flex:1 1 0; min-width:0; font-size:19px; padding:12px 10px; }
+  .duo{ grid-template-columns:1fr; margin-left:0; margin-right:0; }
+  .posts{ grid-template-columns:1fr 1fr; }
+  .donuts{ grid-template-columns:1fr; }
+  .donut figcaption{ text-align:center; }
+  .personas{ grid-template-columns:1fr; }
+  .screens{ gap:10px; padding:16px 0; }
+  .boards{ margin-left:calc(-1 * var(--gutter)); margin-right:calc(-1 * var(--gutter)); }
+  .board{ grid-template-columns:minmax(0,1fr); }
+  .board-side{ grid-template-columns:minmax(0,46%) minmax(0,1fr); }
+  .board-wide .board-side:last-child{ grid-template-columns:minmax(0,1fr); }
+  .contact .giant{ font-size:clamp(60px,17vw,90px); }
+  .flower-contact{ display:none; }
+  .contact-list{ width:auto; margin:0; }
+  .contact .band{ text-align:left; }
+}
+
 </style>
 </head>
 <body>
 
-<nav class="desktop-nav" aria-label="Main navigation" data-i18n-aria="mainNav">
+<a class="skip-link" href="#main" data-i18n="nav.skip">Skip to content</a>
+
+<nav class="desktop-nav" aria-label="Main navigation" data-i18n-aria="nav.label">
   <div class="links">
-    <a href="#home-top" data-i18n="home">Home</a>
-    <a href="#about-d" data-i18n="about">About</a>
-    <a href="#contact" data-i18n="contact">Contact</a>
+    <a href="#home-top" data-i18n="nav.home">Home</a>
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
   </div>
-  <div style="display:flex; align-items:center; gap:20px;">
-    <span class="tag" data-i18n="tag">UX|UI · Product Designer</span>
-    <span class="lang-switch" role="group" aria-label="Language" data-i18n-aria="langGroup">
+  <div class="nav-right">
+    <span class="tag" data-i18n="nav.tag">UX|UI · Product Designer</span>
+    <span class="lang-switch" role="group" aria-label="Language" data-i18n-aria="nav.language">
       <button type="button" data-lang="en" lang="en" class="lang-btn active" aria-pressed="true" aria-label="English">EN</button><span class="lang-sep" aria-hidden="true">·</span><button type="button" data-lang="es" lang="es" class="lang-btn" aria-pressed="false" aria-label="Español">ES</button><span class="lang-sep" aria-hidden="true">·</span><button type="button" data-lang="it" lang="it" class="lang-btn" aria-pressed="false" aria-label="Italiano">IT</button>
     </span>
   </div>
 </nav>
 
-<a href="#mobmenu" class="fixed-burger" id="burgerBtn" aria-label="Open menu" data-i18n-aria="openMenu">
-  <svg viewBox="0 0 24 24" fill="none" stroke="#fffefc" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+<a href="#mobmenu" class="fixed-burger" id="burgerBtn" aria-label="Open menu" data-i18n-aria="nav.openMenu">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fffefc" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
 </a>
 
-<section id="home-top" class="page-block">
-  <div class="sr-only" data-sr="home"><h1>Portfolio — Nathalia Gómez</h1><p>UX|UI · Product Designer</p><p>Open to Junior UX/UI & Product Design roles · Based in Italy · Open to remote</p><p>Bridging user needs with business strategy through human-centered design</p></div>
-  <div class="sr-only sr-d" data-sr="work"><h2>View my work</h2><p>A selection of projects I've worked on in the areas of UX|UI and product design</p><h3>Realidad Au Pair</h3><p>A digital ecosystem streamlining the au pair journey</p><p>Product Design · UX Research · UX/UI · Content Design</p><h3>Angel Fashion</h3><p>Redesigning a multi-location beauty salon for effortless booking</p><p>Product Design · Responsive · UX/UI · Content Design</p></div>
-  <div class="sr-only sr-d" data-sr="about"><h2>About me</h2><p>I'm a UX/UI & Product Designer with an 8-year background managing a business. Combining first-hand business experience with user research, I build human-centered digital products that balance user empathy with business viability.</p><h3>My Approach</h3><ul><li>Research-Driven</li><li>Business-Minded</li><li>Human-Centered</li></ul><blockquote><p>“Good design starts with understanding the problem, not just opening Figma”</p></blockquote><h3>Currently</h3><p>I'm currently seeking Junior UX/UI or Product Design opportunities where I can bring a fresh, creative perspective, continuously learn, and contribute meaningfully within a collaborative team.</p><p>Let's connect and build something together</p></div>
-  <img class="img-d" src="img/en/home-desktop.webp" data-img="home-desktop" width="1800" height="5042" alt="">
-  <img class="img-m" src="img/en/home-mobile.webp" data-img="home-mobile" width="786" height="1704" alt="">
-  <div class="layer-d"><a class="hot btnspot" style="left:38.750%;top:15.113%;width:23.958%;height:1.859%;" href="#work-d" aria-label="View my work" data-i18n-aria="viewWork"></a><a class="hot cardspot" style="left:4.389%;top:37.783%;width:43.556%;height:10.611%;" href="#realidad-aupair" aria-label="Realidad Au Pair — view case study" data-i18n-aria="caseAupair"></a><a class="hot cardspot" style="left:52.167%;top:37.783%;width:43.389%;height:10.611%;" href="#angel-fashion" aria-label="Angel Fashion — view case study" data-i18n-aria="caseAngel"></a><a class="hot btnspot" style="left:17.722%;top:97.283%;width:23.944%;height:1.805%;" href="#contact" aria-label="Contact me" data-i18n-aria="contactMe"></a><a class="hot btnspot" style="left:58.222%;top:97.283%;width:23.889%;height:1.805%;" href="#work-d" aria-label="View my work" data-i18n-aria="viewWork"></a><span id="work-d" style="position:absolute;top:24.831%;left:0;"></span><span id="about-d" style="position:absolute;top:55.375%;left:0;"></span></div>
-  <div class="layer-m"><a class="hot btnspot" style="left:18.575%;top:76.585%;width:62.595%;height:6.631%;" href="#work" aria-label="View my work" data-i18n-aria="viewWork"></a></div>
+
+<main id="main">
+
+<section id="home-top" class="home">
+  <img class="flower flower-rose" src="img/flower-rose.webp" width="400" height="499" alt="">
+  <img class="flower flower-hydrangea" src="img/flower-hydrangea.webp" width="278" height="391" alt="">
+  <p class="top-banner" data-i18n="home.banner">Open to Junior UX/UI & Product Design roles · Based in Italy · Open to remote</p>
+  <div class="hero">
+    <h1 class="hero-title"><span class="hero-portfolio">Portfolio</span> <span class="hero-name">Nathalia <span>Gómez</span></span></h1>
+    <p class="hero-role" data-i18n="home.role">UX|UI · Product Designer</p>
+    <a class="btn" href="#work" data-i18n="btn.viewWork">View my work</a>
+  </div>
+  <p class="band band-italic" data-i18n="home.tagline">Bridging user needs with business strategy through human-centered design</p>
 </section>
 
-<section id="work" class="page-block mobile-only">
-  <div class="sr-only" data-sr="work"><h2>View my work</h2><p>A selection of projects I've worked on in the areas of UX|UI and product design</p><h3>Realidad Au Pair</h3><p>A digital ecosystem streamlining the au pair journey</p><p>Product Design · UX Research · UX/UI · Content Design</p><h3>Angel Fashion</h3><p>Redesigning a multi-location beauty salon for effortless booking</p><p>Product Design · Responsive · UX/UI · Content Design</p></div>
-  <img class="img-m" src="img/en/work-mobile.webp" data-img="work-mobile" width="786" height="1704" loading="lazy" alt="">
-  <div class="layer-m"><a class="hot cardspot" style="left:4.198%;top:16.432%;width:91.603%;height:35.211%;" href="#realidad-aupair" aria-label="Realidad Au Pair — view case study" data-i18n-aria="caseAupair"></a><a class="hot cardspot" style="left:4.198%;top:58.392%;width:91.603%;height:31.103%;" href="#angel-fashion" aria-label="Angel Fashion — view case study" data-i18n-aria="caseAngel"></a></div>
+<section id="work" class="work" aria-labelledby="work-title">
+  <h2 class="giant giant-condensed" id="work-title" data-i18n="work.title">View my work</h2>
+  <p class="band" data-i18n="work.intro">A selection of projects I've worked on in the areas of UX|UI and product design</p>
+  <div class="cards">
+    <article class="card card-aupair">
+      <img class="card-thumb" src="img/thumb-aupair.webp" width="170" height="450" loading="lazy" decoding="async" alt="">
+      <h3 class="card-title">Realidad Au Pair</h3>
+      <p class="card-sub" data-i18n="work.aupair.sub">A digital ecosystem streamlining the au pair journey</p>
+      <a class="btn" href="#realidad-aupair"><span data-i18n="btn.viewCase">View case study</span><span class="sr-only"> — Realidad Au Pair</span></a>
+      <p class="card-tags" data-i18n="work.aupair.tags">Product Design · UX Research · UX/UI · Content Design</p>
+    </article>
+    <article class="card card-angel">
+      <img class="card-bg" src="img/angel-hero.webp" width="1800" height="1123" loading="lazy" decoding="async" alt="">
+      <h3 class="card-title">Angel Fashion</h3>
+      <p class="card-sub" data-i18n="work.angel.sub">Redesigning a multi-location beauty salon for effortless booking</p>
+      <a class="btn" href="#angel-fashion"><span data-i18n="btn.viewCase">View case study</span><span class="sr-only"> — Angel Fashion</span></a>
+      <p class="card-tags" data-i18n="work.angel.tags">Product Design · Responsive · UX/UI · Content Design</p>
+    </article>
+  </div>
 </section>
 
-<section id="about" class="page-block mobile-only">
-  <div class="sr-only" data-sr="about"><h2>About me</h2><p>I'm a UX/UI & Product Designer with an 8-year background managing a business. Combining first-hand business experience with user research, I build human-centered digital products that balance user empathy with business viability.</p><h3>My Approach</h3><ul><li>Research-Driven</li><li>Business-Minded</li><li>Human-Centered</li></ul><blockquote><p>“Good design starts with understanding the problem, not just opening Figma”</p></blockquote><h3>Currently</h3><p>I'm currently seeking Junior UX/UI or Product Design opportunities where I can bring a fresh, creative perspective, continuously learn, and contribute meaningfully within a collaborative team.</p><p>Let's connect and build something together</p></div>
-  <img class="img-m" src="img/en/about-mobile.webp" data-img="about-mobile" width="786" height="2740" loading="lazy" alt="">
-  <div class="layer-m"><a class="hot btnspot" style="left:6.107%;top:93.978%;width:38.168%;height:3.467%;" href="#contact" aria-label="Contact me" data-i18n-aria="contactMe"></a><a class="hot btnspot" style="left:56.489%;top:93.978%;width:38.168%;height:3.467%;" href="#work" aria-label="View my work" data-i18n-aria="viewWork"></a></div>
+<section id="about" class="about" aria-labelledby="about-title">
+  <div class="about-top">
+    <div class="about-text">
+      <h2 class="giant giant-condensed" id="about-title" data-i18n="about.title">About me</h2>
+      <p class="lead" data-i18n="about.intro">I'm a UX/UI &amp; Product Designer with an 8-year <u>background managing a business</u>. Combining first-hand business experience with user research, I build human-centered digital products that balance user empathy with business viability.</p>
+    </div>
+    <img class="portrait" src="img/portrait.webp" width="507" height="508" loading="lazy" decoding="async" alt="Portrait of Nathalia Gómez, UX|UI · Product Designer" data-i18n-alt="about.portrait.alt">
+  </div>
+  <h3 class="h-display" data-i18n="about.approach">My Approach</h3>
+  <ul class="chips">
+    <li class="chip" data-i18n="about.chip1">Research-Driven</li>
+    <li class="chip chip-dark" data-i18n="about.chip2">Business-Minded</li>
+    <li class="chip" data-i18n="about.chip3">Human-Centered</li>
+  </ul>
+  <blockquote class="band band-italic"><p data-i18n="about.quote">“Good design starts with understanding the problem, not just opening Figma”</p></blockquote>
+  <h3 class="h-display" data-i18n="about.currently">Currently</h3>
+  <p class="lead" data-i18n="about.currently.text">I'm currently seeking Junior UX/UI or Product Design opportunities where <u>I can bring a fresh, creative perspective</u>, continuously learn, and contribute meaningfully within a collaborative team.</p>
+  <div class="cta-end cta-about">
+    <img class="flower flower-about" src="img/flower-rose-2.webp" width="378" height="463" loading="lazy" decoding="async" alt="">
+    <p class="cta-note"><span data-i18n="about.connect">Let's connect and build something together</span><img class="cta-arrow" src="img/arrow.webp" width="89" height="142" loading="lazy" decoding="async" alt=""></p>
+    <div class="btn-row">
+      <a class="btn btn-lg" href="#contact" data-i18n="btn.contactMe">Contact me</a>
+      <a class="btn btn-lg" href="#work" data-i18n="btn.viewWork">View my work</a>
+    </div>
+  </div>
 </section>
 
-<section id="realidad-aupair"><div class="sr-only" data-sr="aupair"><h2>Realidad Au Pair</h2><p>Designing a digital ecosystem for a structured and supported au pair experience</p><ul><li><strong>Role:</strong> Solo Product Designer · UX/UI</li><li><strong>Timeline:</strong> 12 weeks</li><li><strong>Tools:</strong> Figma · Optimal Workshop · Canva · NotebookLM</li><li><strong>Language:</strong> Spanish</li><li><strong>Project type:</strong> Individual academic project developed as part of my UX/UI Master's degree</li></ul><h3>The challenge</h3><p>Au pairs sustain households without adequate support systems:</p><ul><li><strong>Complex Scope:</strong> They manage shifting responsibilities in ambiguous, emotionally demanding contexts</li><li><strong>Lack of Support:</strong> They operate without clear frameworks or professional guidance</li><li><strong>Core Problem:</strong> The underlying issue isn't the workload itself — it's the total lack of structure</li></ul><h3>The solution</h3><p>A support system designed to turn an unstructured, improvisational journey into a guided experience by empowering au pairs to:</p><ul><li><strong>Define their role:</strong> Gain clarity on daily responsibilities and expectations</li><li><strong>Set boundaries:</strong> Establish clear, healthy limits within the host family context</li><li><strong>Foster growth:</strong> Turn their day-to-day experience into conscious personal and professional learning</li></ul><h3>User Research & Key Insights</h3><h4>Data Source & Community Engagement</h4><p>To ground this project in authentic user needs, I built and managed the Instagram community (@realidadaupair) from scratch, executing the content strategy, visual identity, and audience engagement. Growing this platform gave me direct access to real au pair stories, ongoing qualitative feedback, and an immediate recruitment pool to gather 50 survey responses and conduct real-user testing.</p><h4>Quantitative Insights (Survey with 50 au pairs)</h4><ul><li><strong>Emotional Strain:</strong> Most active au pairs rate the emotional impact of their experience between 3 and 5 out of 5</li><li><strong>Community & Safety Needs:</strong> High demand for local community connection and immediate assistance features (emergency options, situation translators)</li></ul><p><strong>Boundary & Role Clarity:</strong> 58% struggle to set boundaries with their host families · 50% report ambiguous working hours and tasks</p><p><strong>Improvised Systems:</strong> 56% organize their daily tasks using basic apps like WhatsApp or Notes · Only 23% use dedicated planning tools</p><p><strong>Key Insight:</strong> The strongest need wasn't access to more resources, but having a clearer way to organize and manage everyday challenges</p><h4>Qualitative Insights (In-depth Interviews with 4 users)</h4><ul><li><strong>Initial Friction:</strong> Agencies provide strong initial matching support but lack continuous operational backing</li><li><strong>Communication Gaps:</strong> Verbal instructions and ambiguous house rules lead to friction over time</li><li><strong>Retrospective Feedback:</strong> Au pairs consistently agree that clear initial guidelines and boundary-setting strategies would have significantly improved their stay</li></ul><h4>User Personas</h4><p>Two user personas (in Spanish): Sandra Pérez, 21, a university student in Madrid who is thinking about becoming an au pair; and María Ruiz, 24, a Latin American au pair who has been living with a host family in Italy for 3 months.</p><p><strong>Key Insight:</strong> Au pairs need structured tools to manage daily childcare tasks while navigating delicate emotional boundaries with host families</p><h4>Competitive Benchmarking</h4><p>Traffic-light comparison of AuPairWorld, Au Pair Butterfly, Cultural Care Au Pair, Google Calendar and BFF across schedule and task management, emotional support, community, au pair focus, and safety and trust. None of them fully solves emotional support or focuses on the au pair.</p><p><strong>Key Insight:</strong> Competitors excel at matching families, but leave a total void in daily operational and emotional support during the stay</p><h4>Customer Journey Map</h4><p>Journey map (in Spanish) across four phases — before arrival and initial adaptation, daily management, difficult situations, and post-experience evaluation. The emotional curve goes from excitement and uncertainty, through stress and strong emotional tension mid-stay, to relief and reflection at the end.</p><p><strong>Key Insight:</strong> Frustration spikes mid-stay due to unwritten household rules and ambiguous expectations, proving the need for proactive guidelines</p><h3>Information Architecture & Feature Prioritization</h3><h4>Core Navigation Structure</h4><ul><li><strong>Task & Schedule Planner:</strong> Daily schedule views, child-specific agendas, and task reminders</li><li><strong>Emotional Wellbeing:</strong> Daily mood check-ins, emotional history tracking, and stress metrics</li><li><strong>Help & Guidance:</strong> Emergency action flows, communication templates for family discussions, and situation resolution</li><li><strong>Resources & Community:</strong> Practical care tips, activity ideas, and local au pair networking</li></ul><p>These four core areas were prioritized to directly address the main pain points uncovered in research: lack of structure, emotional isolation, unclear boundaries, and limited peer support.</p><h3>Concept Testing & Design Iterations</h3><h4>Tested the prototype with 6 users through task-based usability sessions</h4><ul><li><strong>Usability Sessions & Methodology:</strong> Tested the prototype with 6 active au pairs through task-based usability sessions to validate core navigation, feature clarity, and emotional relevance before finalizing high-fidelity screens</li><li><strong>Core User Tasks Tested:</strong> Locate where to log daily mood, add a new task to the daily schedule, find immediate support when feeling overwhelmed or isolated, search for childcare activity ideas and resources</li></ul><h4>Key Findings & MVP Strategy Shift</h4><ul><li><strong>Task vs. Static Content:</strong> Users prioritized instant problem-solving tools and daily task planning over static general guides</li><li><strong>MVP Refinement:</strong> Streamlined the product scope to focus strictly on three high-value areas: daily task organization, immediate situation support, and emotional tracking</li></ul><h4>Usability Refinements</h4><ul><li><strong>Emotional Tracking Screen:</strong> Replaced confusing status labels with a clear, direct Call-to-Action (“Add an emotion for today”) and streamlined statistical widgets</li><li><strong>Home Dashboard:</strong> Reorganized vertical spacing, corrected color contrast issues, and introduced direct entry points for local community features</li><li><strong>Contextual Support:</strong> Replaced static help texts with active assistance components (guided prompts and immediate action flows)</li></ul><p>Before-and-after app screens (in Spanish) for emotional tracking, the home dashboard and the help section.</p><h3>Key Takeaways</h3><ul><li><strong>More information wasn't the solution:</strong> Research showed that au pairs already had access to large amounts of information. The challenge was finding the right resource when they needed it</li><li><strong>Prioritization shaped the MVP:</strong> Instead of trying to solve every pain point, we prioritized the Planner as the core feature based on user needs and feasibility</li><li><strong>Testing challenged my assumptions:</strong> Some features and navigation patterns that seemed intuitive during the design phase were not immediately understood by users, leading to changes in the information architecture</li></ul><h3>Next Steps</h3><ul><li><strong>A/B Testing:</strong> Validate conversion rate and usability for the new quick-help flows</li><li><strong>Micro-interactions:</strong> Polish haptic feedback animations for daily mood tracking to boost engagement</li><li><strong>Community Discovery:</strong> Design a local networking tool enabling au pairs to connect with nearby peers, directly addressing the pain point of loneliness</li></ul><p>Enjoyed this case study? Let's connect!</p></div><div class="cs-d"><div class="cs-slice"><img src="img/en/aupair-desktop-01.webp" data-img="aupair-desktop-01" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-desktop-02.webp" data-img="aupair-desktop-02" width="1800" height="1900" loading="lazy" alt=""><a class="hot linkspot" style="left:40.556%;top:88.421%;width:16.111%;height:6.316%;" href="https://www.instagram.com/realidadaupair/" target="_blank" rel="noopener" aria-label="Realidad Au Pair on Instagram (opens in a new tab)" data-i18n-aria="igAupair"></a></div><div class="cs-slice"><img src="img/en/aupair-desktop-03.webp" data-img="aupair-desktop-03" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-desktop-04.webp" data-img="aupair-desktop-04" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-desktop-05.webp" data-img="aupair-desktop-05" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-desktop-06.webp" data-img="aupair-desktop-06" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-desktop-07.webp" data-img="aupair-desktop-07" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-desktop-08.webp" data-img="aupair-desktop-08" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-desktop-09.webp" data-img="aupair-desktop-09" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-desktop-10.webp" data-img="aupair-desktop-10" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-desktop-11.webp" data-img="aupair-desktop-11" width="1800" height="877" loading="lazy" alt=""><a class="hot btnspot" style="left:12.778%;top:52.680%;width:24.056%;height:10.604%;" href="#contact" aria-label="Contact me" data-i18n-aria="contactMe"></a><a class="hot btnspot" style="left:60.444%;top:52.680%;width:24.056%;height:10.604%;" href="#angel-fashion" aria-label="Next project" data-i18n-aria="nextProject"></a></div></div><div class="cs-m"><div class="cs-slice"><img src="img/en/aupair-mobile-01.webp" data-img="aupair-mobile-01" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-mobile-02.webp" data-img="aupair-mobile-02" width="866" height="2000" loading="lazy" alt=""><a class="hot linkspot" style="left:39.261%;top:91.750%;width:25.404%;height:6.250%;" href="https://www.instagram.com/realidadaupair/" target="_blank" rel="noopener" aria-label="Realidad Au Pair on Instagram (opens in a new tab)" data-i18n-aria="igAupair"></a></div><div class="cs-slice"><img src="img/en/aupair-mobile-03.webp" data-img="aupair-mobile-03" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-mobile-04.webp" data-img="aupair-mobile-04" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-mobile-05.webp" data-img="aupair-mobile-05" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-mobile-06.webp" data-img="aupair-mobile-06" width="866" height="1910" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-mobile-07.webp" data-img="aupair-mobile-07" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-mobile-08.webp" data-img="aupair-mobile-08" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-mobile-09.webp" data-img="aupair-mobile-09" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/aupair-mobile-10.webp" data-img="aupair-mobile-10" width="866" height="300" loading="lazy" alt=""><a class="hot btnspot" style="left:7.737%;top:66.000%;width:33.834%;height:28.333%;" href="#contact" aria-label="Contact me" data-i18n-aria="contactMe"></a><a class="hot btnspot" style="left:57.737%;top:66.000%;width:33.718%;height:28.333%;" href="#angel-fashion" aria-label="Next project" data-i18n-aria="nextProject"></a></div></div></section>
-<section id="angel-fashion"><div class="sr-only" data-sr="angel"><h2>Angel Fashion</h2><p>Improving the digital experience of a beauty & wellness center</p><ul><li><strong>Role:</strong> Solo Product Designer · UX/UI</li><li><strong>Timeline:</strong> 4 weeks</li><li><strong>Tools:</strong> Figma · Lovable · Leveraged AI to generate initial content drafts, then refined them for tone, accuracy, and design direction</li><li><strong>Language:</strong> Italian</li><li><strong>Project type:</strong> UX/UI Case Study · Website Redesign</li></ul><h3>The challenge & Impact</h3><p>Angel Fashion is a beauty salon specializing in aesthetic treatments, nail care, and personal body care</p><ul><li><strong>Broken UX & Low Trust:</strong> Low-contrast text, missing CTAs, duplicate navigation, and poor visual credibility undermined the salon's high-end brand positioning</li><li><strong>Conversion Obstacles:</strong> Key information like pricing and services was hard to find, driving high bounce rates and lost booking opportunities</li><li><strong>Operational Friction:</strong> Cognitive overload forced first-time visitors to call directly, burdening staff with basic administrative inquiries</li></ul><h3>The solution</h3><p>Redesign the website into an intuitive, high-converting storefront that builds instant trust and streamlines bookings</p><ul><li><strong>Trust & Authenticity First:</strong> Replacing generic stock photos with real salon photography, and swapping unverified text quotes for transparent Google Review integrations</li><li><strong>Information Architecture Cleanup:</strong> Merging duplicate navigation bars into a single, predictable structure centered around core user tasks</li><li><strong>Conversion & Accessibility:</strong> Restructure the visual hierarchy with WCAG-compliant contrast, clean UI elements, and persistent CTAs across all devices to streamline bookings</li></ul><h3>UX Audit & Key Insights</h3><p>To identify the root causes of bounce rates and friction, I conducted a heuristic audit of the current platform. The findings were mapped based on User Impact vs. Business Impact to prioritize solutions</p><ul><li><strong>Generic Stock Images Destroy Credibility:</strong> Generic stock photos replaced real work and staff, creating user doubt and friction during decision-making</li><li><strong>Text Density & Unprofessional Tone:</strong> AI-generated text blocks with system emojis and low contrast caused severe cognitive overload and poor visual accessibility</li><li><strong>Navigational Friction & Unusable CTAs:</strong> Stacked navigation menus and broken CTAs created severe navigation friction, causing users to drop off before booking</li><li><strong>Unverified Social Proof (“Dicono di Noi”):</strong> Unverified, text-only testimonials without names or photos raised user skepticism instead of building credibility</li></ul><h3>IA & Design Direction</h3><p>Before jumping into high-fidelity visuals, I restructured the site hierarchy to guide users smoothly through their decision-making process</p><ul><li><strong>Simplified Navigation:</strong> Combined the stacked header menus into a clean, single-tier bar</li><li><strong>Clear Service Categorization:</strong> Grouped scattered treatments into broad, recognizable categories</li><li><strong>Human & Welcoming Voice:</strong> Adapted content to speak directly to self-care, peace of mind, and time efficiency — addressing the core emotional reasons people book salon appointments</li><li><strong>Elevated Visual Identity:</strong> Established a warm, minimal color palette with accessible contrast ratios, paired with clean iconography to replace emojis</li><li><strong>Mobile-First Accessibility:</strong> Optimized touch targets, thumb-zone CTA placements, and scannable service cards for on-the-go browsing</li></ul><h3>Omnichannel Alignment: Social Media & Brand</h3><h4>Brand Consistency & Audience Conversion</h4><p>Parallel to the web redesign, I managed Angel Fashion's visual identity and social media ecosystem. By creating a unified design language across Instagram, Google Business Profiles, and the web platform, I aligned brand touchpoints to tell an authentic story — using strategic content to drive organic traffic directly into the high-converting web booking path.</p><h3>The Redesign</h3><ul><li><strong>Desktop Layout:</strong> Hero section with high-contrast typography, clear 3×2 treatment grid, verified Google Reviews section, and distinct location cards</li><li><strong>Mobile Experience:</strong> Optimized single-column layout, dark-mode overlays for high contrast, collapsible hub cards for physical locations (Bologna / Casalecchio di Reno), and a clean hamburger menu overlay</li></ul><h3>Key Design Decisions</h3><h4>Header & Navigation Architecture</h4><ul><li><strong>Before:</strong> Stacked, chaotic double header with duplicate categories directly above, creating severe visual noise and confusing users</li><li><strong>After:</strong> Unified single-tier navigation paired with a persistent, high-contrast gold CTA button (Prenota ora)</li></ul><h4>Visual Hierarchy & Content Scannability</h4><ul><li><strong>Before:</strong> Overwhelming SEO text blocks crammed with system emojis and low-contrast typography, giving an unprofessional impression that damaged brand credibility</li><li><strong>After:</strong> Restructured content using a clean typography scale, generous white space, custom icons, and scannable treatment cards that communicate quality at a glance</li></ul><p><strong>Key decisions:</strong> Replaced text-heavy paragraphs with structured cards featuring high-end photography and bite-sized descriptions, and replaced system emojis with refined brand icons and a clear typography hierarchy to elevate brand trust</p><h4>Social Proof & Trust Indicators (“Dicono di noi”)</h4><ul><li><strong>Before:</strong> Plain-text, unverified testimonials without star ratings, reviewer sources, or credibility indicators, making them appear fabricated</li><li><strong>After:</strong> Integrated a verified Google Reviews section displaying actual customer feedback alongside an official Google Rating to validate trust immediately before the booking section</li></ul><h4>Multi-Location Access & Mobile Experience</h4><ul><li><strong>Before:</strong> Unoptimized mobile layout where users had to wade through endless text and generic stock photos to find physical locations or contact details</li><li><strong>After:</strong> Grouped location cards into regional hubs (Bologna & Casalecchio di Reno) and introduced a clean mobile hamburger menu overlay, drastically reducing mobile scroll length and cognitive load</li></ul><h3>Next Steps & Takeaways</h3><ul><li><strong>Designing for Multi-Location Businesses:</strong> Structuring navigation for multiple physical salons requires balancing local SEO needs with clean, uncluttered mobile UX</li><li><strong>The Power of Verified Proof:</strong> Integrating real photos and verified Google ratings directly into key decision points is as critical to conversion as clean visual design</li><li><strong>End-to-End Brand Cohesion:</strong> Connecting social media content strategy with UI design creates a unified experience that reinforces customer trust across all digital touchpoints</li></ul><p>Enjoyed this case study? Let's connect!</p></div><div class="cs-d"><div class="cs-slice"><img src="img/en/angel-desktop-01.webp" data-img="angel-desktop-01" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-desktop-02.webp" data-img="angel-desktop-02" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-desktop-03.webp" data-img="angel-desktop-03" width="1800" height="1900" loading="lazy" alt=""><a class="hot linkspot" style="left:45.000%;top:87.368%;width:10.000%;height:10.000%;" href="https://www.instagram.com/angelfashionbologna/" target="_blank" rel="noopener" aria-label="Angel Fashion on Instagram (opens in a new tab)" data-i18n-aria="igAngel"></a></div><div class="cs-slice"><img src="img/en/angel-desktop-04.webp" data-img="angel-desktop-04" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-desktop-05.webp" data-img="angel-desktop-05" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-desktop-06.webp" data-img="angel-desktop-06" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-desktop-07.webp" data-img="angel-desktop-07" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-desktop-08.webp" data-img="angel-desktop-08" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-desktop-09.webp" data-img="angel-desktop-09" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-desktop-10.webp" data-img="angel-desktop-10" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-desktop-11.webp" data-img="angel-desktop-11" width="1800" height="1900" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-desktop-12.webp" data-img="angel-desktop-12" width="1800" height="380" loading="lazy" alt=""><a class="hot btnspot" style="left:13.167%;top:51.053%;width:23.889%;height:25.526%;" href="#contact" aria-label="Contact me" data-i18n-aria="contactMe"></a><a class="hot btnspot" style="left:60.889%;top:51.053%;width:24.000%;height:25.526%;" href="#realidad-aupair" aria-label="Next project" data-i18n-aria="nextProject"></a></div></div><div class="cs-m"><div class="cs-slice"><img src="img/en/angel-mobile-01.webp" data-img="angel-mobile-01" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-mobile-02.webp" data-img="angel-mobile-02" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-mobile-03.webp" data-img="angel-mobile-03" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-mobile-04.webp" data-img="angel-mobile-04" width="866" height="2000" loading="lazy" alt=""><a class="hot linkspot" style="left:45.035%;top:41.500%;width:18.476%;height:5.750%;" href="https://www.instagram.com/angelfashionbologna/" target="_blank" rel="noopener" aria-label="Angel Fashion on Instagram (opens in a new tab)" data-i18n-aria="igAngel"></a></div><div class="cs-slice"><img src="img/en/angel-mobile-05.webp" data-img="angel-mobile-05" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-mobile-06.webp" data-img="angel-mobile-06" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-mobile-07.webp" data-img="angel-mobile-07" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-mobile-08.webp" data-img="angel-mobile-08" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-mobile-09.webp" data-img="angel-mobile-09" width="866" height="2000" loading="lazy" alt=""></div><div class="cs-slice"><img src="img/en/angel-mobile-10.webp" data-img="angel-mobile-10" width="866" height="300" loading="lazy" alt=""><a class="hot btnspot" style="left:8.430%;top:6.667%;width:33.718%;height:28.333%;" href="#contact" aria-label="Contact me" data-i18n-aria="contactMe"></a><a class="hot btnspot" style="left:58.430%;top:6.667%;width:33.718%;height:28.333%;" href="#realidad-aupair" aria-label="Next project" data-i18n-aria="nextProject"></a></div></div></section>
+<article id="realidad-aupair" class="case" aria-labelledby="aupair-title">
+  <header class="case-head">
+    <h2 class="case-title" id="aupair-title">Realidad Au Pair</h2>
+    <p class="band" data-i18n="aupair.subtitle">Designing a digital ecosystem for a structured and supported au pair experience</p>
+    <ul class="info-box"><li data-i18n="aupair.info2"><strong>Role:</strong> Solo Product Designer · UX/UI</li><li data-i18n="aupair.info3"><strong>Timeline:</strong> 12 weeks</li><li data-i18n="aupair.info4"><strong>Tools:</strong> Figma · Optimal Workshop · Canva · NotebookLM</li><li data-i18n="aupair.info5"><strong>Language:</strong> Spanish</li><li data-i18n="aupair.info6"><strong>Project type:</strong> Individual academic project developed as part of my UX/UI Master's degree</li></ul>
+  </header>
+  <img class="bleed" src="img/aupair-hero.webp" width="1800" height="1209" loading="lazy" decoding="async" alt="Hand pulling a phone out of a jacket pocket, showing the Realidad Au Pair app" data-i18n-alt="aupair.hero.alt">
 
-<section id="contact" class="page-block">
-  <div class="sr-only" data-sr="contact"><h2>Contact me</h2><p>Let's connect and build something meaningful together</p><p>Whether you have an open Junior UX/UI position, a freelance project, or just want to say hi, my inbox is always open!</p><ul><li>WhatsApp: +39 344 544 3117</li><li>LinkedIn: www.linkedin.com/in/nathalie-gómez</li><li>Email: nathalia8gomez@gmail.com</li></ul><p><strong>Location & Availability:</strong> Based in Italy · Open to full-time remote & hybrid roles</p></div>
-  <img class="img-d" src="img/en/contact-desktop.webp" data-img="contact-desktop" width="1800" height="1971" loading="lazy" alt="">
-  <img class="img-m" src="img/en/contact-mobile.webp" data-img="contact-mobile" width="786" height="1554" loading="lazy" alt="">
-  <div class="layer-d"><a class="hot linkspot" style="left:19.444%;top:34.919%;width:48.611%;height:6.976%;" href="https://wa.me/393445443117" target="_blank" rel="noopener" aria-label="WhatsApp: +39 344 544 3117 (opens in a new tab)" data-i18n-aria="whatsapp"></a><a class="hot linkspot" style="left:19.444%;top:43.607%;width:48.611%;height:6.976%;" href="https://www.linkedin.com/in/nathalie-g%C3%B3mez" target="_blank" rel="noopener" aria-label="LinkedIn: nathalie-gómez (opens in a new tab)" data-i18n-aria="linkedin"></a><a class="hot linkspot" style="left:19.444%;top:52.930%;width:48.611%;height:6.976%;" href="mailto:nathalia8gomez@gmail.com" aria-label="Email: nathalia8gomez@gmail.com" data-i18n-aria="email"></a><a class="hot btnspot" style="left:16.597%;top:84.450%;width:23.958%;height:4.617%;" href="#about-d" aria-label="About me" data-i18n-aria="aboutMe"></a><a class="hot btnspot" style="left:57.153%;top:84.450%;width:23.958%;height:4.617%;" href="#work-d" aria-label="View my work" data-i18n-aria="viewWork"></a></div>
-  <div class="layer-m"><a class="hot linkspot" style="left:2.545%;top:38.610%;width:57.252%;height:5.792%;" href="https://wa.me/393445443117" target="_blank" rel="noopener" aria-label="WhatsApp: +39 344 544 3117 (opens in a new tab)" data-i18n-aria="whatsapp"></a><a class="hot linkspot" style="left:2.545%;top:48.263%;width:69.975%;height:6.113%;" href="https://www.linkedin.com/in/nathalie-g%C3%B3mez" target="_blank" rel="noopener" aria-label="LinkedIn: nathalie-gómez (opens in a new tab)" data-i18n-aria="linkedin"></a><a class="hot mailspot" style="left:2.545%;top:56.306%;width:73.791%;height:8.366%;" href="mailto:nathalia8gomez@gmail.com" aria-label="Email: nathalia8gomez@gmail.com" data-i18n-aria="email"></a><a class="hot btnspot" style="left:6.107%;top:85.264%;width:38.168%;height:5.792%;" href="#about" aria-label="About me" data-i18n-aria="aboutMe"></a><a class="hot btnspot" style="left:57.506%;top:85.264%;width:37.532%;height:5.792%;" href="#work" aria-label="View my work" data-i18n-aria="viewWork"></a></div>
+  <div class="wrap">
+    <div class="duo">
+      <section class="box">
+        <h3 class="h-box" data-i18n="aupair.challenge.title">The challenge</h3>
+        <p class="intro" data-i18n="aupair.challenge.intro">Au pairs sustain households without adequate support systems:</p>
+        <ul class="bullets"><li data-i18n="aupair.challenge.1"><strong>Complex Scope:</strong> They manage shifting responsibilities in ambiguous, emotionally demanding contexts</li><li data-i18n="aupair.challenge.2"><strong>Lack of Support:</strong> They operate without clear frameworks or professional guidance</li><li data-i18n="aupair.challenge.3"><strong>Core Problem:</strong> The underlying issue isn't the workload itself — it's the total lack of structure</li></ul>
+      </section>
+      <section class="box">
+        <h3 class="h-box" data-i18n="aupair.solution.title">The solution</h3>
+        <p class="intro" data-i18n="aupair.solution.intro">A support system designed to turn an unstructured, improvisational journey into a guided experience by empowering au pairs to:</p>
+        <ul class="bullets"><li data-i18n="aupair.solution.1"><strong>Define their role:</strong> Gain clarity on daily responsibilities and expectations</li><li data-i18n="aupair.solution.2"><strong>Set boundaries:</strong> Establish clear, healthy limits within the host family context</li><li data-i18n="aupair.solution.3"><strong>Foster growth:</strong> Turn their day-to-day experience into conscious personal and professional learning</li></ul>
+      </section>
+    </div>
+
+    <h3 class="h-section" data-i18n="aupair.research.title">User Research & Key Insights</h3>
+    <section class="box box-wide">
+      <h4 class="h-sub" data-i18n="aupair.data.title">Data Source & Community Engagement</h4>
+      <p data-i18n="aupair.data.text">To ground this project in authentic user needs, I built and managed the Instagram community (@realidadaupair) from scratch, executing the content strategy, visual identity, and audience engagement. Growing this platform gave me direct access to real au pair stories, ongoing qualitative feedback, and an immediate recruitment pool to gather 50 survey responses and conduct real-user testing.</p>
+      <div class="posts"><img src="img/aupair-ig-1.webp" width="351" height="438" loading="lazy" decoding="async" alt="Instagram post “Realidades de una Au Pair: no todo es como parece”" data-i18n-alt="aupair.ig1.alt"><img src="img/aupair-ig-2.webp" width="351" height="440" loading="lazy" decoding="async" alt="Instagram post promoting free guides to improve the au pair experience" data-i18n-alt="aupair.ig2.alt"><img src="img/aupair-ig-3.webp" width="351" height="438" loading="lazy" decoding="async" alt="Instagram post “5 common mistakes when choosing your host family and how to avoid them”" data-i18n-alt="aupair.ig3.alt"><img src="img/aupair-ig-4.webp" width="351" height="438" loading="lazy" decoding="async" alt="Instagram post “A day at the park: what you can’t forget”" data-i18n-alt="aupair.ig4.alt"></div>
+      <img class="brand-logo" src="img/aupair-logo.webp" width="192" height="118" loading="lazy" decoding="async" alt="Realidad Au Pair">
+    </section>
+
+    <h4 class="h-sub" data-i18n="aupair.quant.title">Quantitative Insights (Survey with 50 au pairs)</h4>
+    <ul class="bullets"><li data-i18n="aupair.quant.1"><strong>Emotional Strain:</strong> Most active au pairs rate the emotional impact of their experience between 3 and 5 out of 5</li><li data-i18n="aupair.quant.2"><strong>Community & Safety Needs:</strong> High demand for local community connection and immediate assistance features (emergency options, situation translators)</li></ul>
+    <div class="box donuts">
+      <p class="donuts-title" data-i18n="aupair.donuts1.title">Boundary &amp; Role Clarity</p>
+      <figure class="donut"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle class="track" cx="50" cy="50" r="40" pathLength="100"/><circle class="arc" cx="50" cy="50" r="40" pathLength="100" stroke-dasharray="58 100"/><text x="50" y="50" dominant-baseline="central" text-anchor="middle">58%</text></svg><figcaption data-i18n="aupair.donut58">58% struggle to set boundaries with their host families</figcaption></figure>
+      <figure class="donut"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle class="track" cx="50" cy="50" r="40" pathLength="100"/><circle class="arc" cx="50" cy="50" r="40" pathLength="100" stroke-dasharray="50 100"/><text x="50" y="50" dominant-baseline="central" text-anchor="middle">50%</text></svg><figcaption data-i18n="aupair.donut50">50% report ambiguous working hours and tasks</figcaption></figure>
+    </div>
+    <div class="box donuts">
+      <p class="donuts-title" data-i18n="aupair.donuts2.title">Improvised Systems</p>
+      <figure class="donut donut-light"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle class="track" cx="50" cy="50" r="40" pathLength="100"/><circle class="arc" cx="50" cy="50" r="40" pathLength="100" stroke-dasharray="56 100"/><text x="50" y="50" dominant-baseline="central" text-anchor="middle">56%</text></svg><figcaption data-i18n="aupair.donut56">56% organize their daily tasks using basic apps like WhatsApp or Notes</figcaption></figure>
+      <figure class="donut"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle class="track" cx="50" cy="50" r="40" pathLength="100"/><circle class="arc" cx="50" cy="50" r="40" pathLength="100" stroke-dasharray="23 100"/><text x="50" y="50" dominant-baseline="central" text-anchor="middle">23%</text></svg><figcaption data-i18n="aupair.donut23">Only 23% use dedicated planning tools</figcaption></figure>
+    </div>
+    <p class="insight"><svg class="insight-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M13 26h6M13.5 29h5M16 6a8 8 0 0 0-4.6 14.5c.8.6 1.1 1.4 1.1 2.3V23h7v-.2c0-.9.4-1.7 1.1-2.3A8 8 0 0 0 16 6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 2.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" fill="currentColor"/></svg><span data-i18n="aupair.quant.insight"><strong>Key Insight:</strong> The strongest need wasn't access to more resources, but having a clearer way to organize and manage everyday challenges</span></p>
+
+    <h4 class="h-sub" data-i18n="aupair.qual.title">Qualitative Insights (In-depth Interviews with 4 users)</h4>
+    <ul class="bullets"><li data-i18n="aupair.qual.1"><strong>Initial Friction:</strong> Agencies provide strong initial matching support but lack continuous operational backing</li><li data-i18n="aupair.qual.2"><strong>Communication Gaps:</strong> Verbal instructions and ambiguous house rules lead to friction over time</li><li data-i18n="aupair.qual.3"><strong>Retrospective Feedback:</strong> Au pairs consistently agree that clear initial guidelines and boundary-setting strategies would have significantly improved their stay</li></ul>
+
+    <h4 class="h-sub" data-i18n="aupair.personas.title">User Personas</h4>
+  </div>
+  <div class="personas">
+    <img src="img/aupair-persona-1.webp" width="817" height="544" loading="lazy" decoding="async" alt="User persona (in Spanish): Sandra Pérez, 21, a university student in Madrid who is thinking about becoming an au pair" data-i18n-alt="aupair.persona1.alt">
+    <img src="img/aupair-persona-2.webp" width="815" height="540" loading="lazy" decoding="async" alt="User persona (in Spanish): María Ruiz, 24, a Latin American au pair who has been living with a host family in Italy for 3 months" data-i18n-alt="aupair.persona2.alt">
+  </div>
+  <div class="wrap">
+    <p class="insight"><svg class="insight-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M13 26h6M13.5 29h5M16 6a8 8 0 0 0-4.6 14.5c.8.6 1.1 1.4 1.1 2.3V23h7v-.2c0-.9.4-1.7 1.1-2.3A8 8 0 0 0 16 6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 2.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" fill="currentColor"/></svg><span data-i18n="aupair.personas.insight"><strong>Key Insight:</strong> Au pairs need structured tools to manage daily childcare tasks while navigating delicate emotional boundaries with host families</span></p>
+
+    <h4 class="h-sub" data-i18n="aupair.bench.heading">Competitive Benchmarking</h4>
+    <div class="bench">
+    <p class="bench-title" data-i18n="aupair.bench.title">Traffic-light method</p>
+    <div class="bench-scroll" tabindex="0" role="region" aria-label="Competitive benchmarking table" data-i18n-aria="aupair.bench.label">
+    <table>
+      <thead><tr><th scope="col" data-i18n="aupair.bench.apps">Competitor apps</th><th scope="col"><img class="bench-logo" src="img/logo-aupairworld.webp" width="200" height="112" loading="lazy" decoding="async" alt="AuPairWorld"></th><th scope="col"><img class="bench-logo" src="img/logo-butterfly.webp" width="198" height="112" loading="lazy" decoding="async" alt="Au Pair Butterfly"></th><th scope="col"><img class="bench-logo" src="img/logo-culturalcare.webp" width="202" height="112" loading="lazy" decoding="async" alt="Cultural Care Au Pair"></th><th scope="col"><img class="bench-logo" src="img/logo-gcal.webp" width="202" height="112" loading="lazy" decoding="async" alt="Google Calendar"></th><th scope="col"><img class="bench-logo" src="img/logo-bff.webp" width="202" height="112" loading="lazy" decoding="async" alt="BFF"></th></tr></thead>
+      <tbody><tr><th scope="row" data-i18n="aupair.bench.row1">Schedule &amp; task management</th><td><img class="bench-icon" src="img/icon-no.webp" width="94" height="95" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.no">Not solved</span></td><td><img class="bench-icon" src="img/icon-partial.webp" width="92" height="94" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.partial">Partially solved</span></td><td><img class="bench-icon" src="img/icon-partial.webp" width="92" height="94" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.partial">Partially solved</span></td><td><img class="bench-icon" src="img/icon-yes.webp" width="91" height="93" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.yes">Well implemented</span></td><td><img class="bench-icon" src="img/icon-no.webp" width="94" height="95" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.no">Not solved</span></td></tr><tr><th scope="row" data-i18n="aupair.bench.row2">Emotional support</th><td><img class="bench-icon" src="img/icon-partial.webp" width="92" height="94" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.partial">Partially solved</span></td><td><img class="bench-icon" src="img/icon-partial.webp" width="92" height="94" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.partial">Partially solved</span></td><td><img class="bench-icon" src="img/icon-partial.webp" width="92" height="94" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.partial">Partially solved</span></td><td><img class="bench-icon" src="img/icon-no.webp" width="94" height="95" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.no">Not solved</span></td><td><img class="bench-icon" src="img/icon-no.webp" width="94" height="95" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.no">Not solved</span></td></tr><tr><th scope="row" data-i18n="aupair.bench.row3">Community</th><td><img class="bench-icon" src="img/icon-no.webp" width="94" height="95" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.no">Not solved</span></td><td><img class="bench-icon" src="img/icon-partial.webp" width="92" height="94" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.partial">Partially solved</span></td><td><img class="bench-icon" src="img/icon-yes.webp" width="91" height="93" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.yes">Well implemented</span></td><td><img class="bench-icon" src="img/icon-no.webp" width="94" height="95" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.no">Not solved</span></td><td><img class="bench-icon" src="img/icon-yes.webp" width="91" height="93" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.yes">Well implemented</span></td></tr><tr><th scope="row" data-i18n="aupair.bench.row4">Au pair focus</th><td><img class="bench-icon" src="img/icon-partial.webp" width="92" height="94" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.partial">Partially solved</span></td><td><img class="bench-icon" src="img/icon-partial.webp" width="92" height="94" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.partial">Partially solved</span></td><td><img class="bench-icon" src="img/icon-no.webp" width="94" height="95" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.no">Not solved</span></td><td><img class="bench-icon" src="img/icon-no.webp" width="94" height="95" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.no">Not solved</span></td><td><img class="bench-icon" src="img/icon-no.webp" width="94" height="95" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.no">Not solved</span></td></tr><tr><th scope="row" data-i18n="aupair.bench.row5">Safety &amp; trust</th><td><img class="bench-icon" src="img/icon-partial.webp" width="92" height="94" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.partial">Partially solved</span></td><td><img class="bench-icon" src="img/icon-yes.webp" width="91" height="93" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.yes">Well implemented</span></td><td><img class="bench-icon" src="img/icon-yes.webp" width="91" height="93" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.yes">Well implemented</span></td><td><img class="bench-icon" src="img/icon-partial.webp" width="92" height="94" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.partial">Partially solved</span></td><td><img class="bench-icon" src="img/icon-yes.webp" width="91" height="93" loading="lazy" decoding="async" alt=""><span class="sr-only" data-i18n="aupair.bench.yes">Well implemented</span></td></tr></tbody>
+    </table>
+    </div>
+    <ul class="bench-legend" aria-hidden="true"><li><img class="bench-icon" src="img/icon-no.webp" width="94" height="95" loading="lazy" decoding="async" alt=""><span data-i18n="aupair.bench.no">Not solved</span></li><li><img class="bench-icon" src="img/icon-partial.webp" width="92" height="94" loading="lazy" decoding="async" alt=""><span data-i18n="aupair.bench.partial">Partially solved</span></li><li><img class="bench-icon" src="img/icon-yes.webp" width="91" height="93" loading="lazy" decoding="async" alt=""><span data-i18n="aupair.bench.yes">Well implemented</span></li></ul>
+  </div>
+    <p class="insight"><svg class="insight-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M13 26h6M13.5 29h5M16 6a8 8 0 0 0-4.6 14.5c.8.6 1.1 1.4 1.1 2.3V23h7v-.2c0-.9.4-1.7 1.1-2.3A8 8 0 0 0 16 6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 2.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" fill="currentColor"/></svg><span data-i18n="aupair.bench.insight"><strong>Key Insight:</strong> Competitors excel at matching families, but leave a total void in daily operational and emotional support during the stay</span></p>
+
+    <h4 class="h-sub" data-i18n="aupair.journey.title">Customer Journey Map</h4>
+    <img class="journey" src="img/aupair-journey.webp" width="1255" height="1426" loading="lazy" decoding="async" alt="Journey map (in Spanish) across four phases — before arrival and initial adaptation, daily management, difficult situations, and post-experience evaluation. The emotional curve goes from excitement and uncertainty, through stress and strong emotional tension mid-stay, to relief and reflection at the end." data-i18n-alt="aupair.journey.alt">
+    <p class="insight"><svg class="insight-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M13 26h6M13.5 29h5M16 6a8 8 0 0 0-4.6 14.5c.8.6 1.1 1.4 1.1 2.3V23h7v-.2c0-.9.4-1.7 1.1-2.3A8 8 0 0 0 16 6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 2.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" fill="currentColor"/></svg><span data-i18n="aupair.journey.insight"><strong>Key Insight:</strong> Frustration spikes mid-stay due to unwritten household rules and ambiguous expectations, proving the need for proactive guidelines</span></p>
+
+    <h3 class="h-section" data-i18n="aupair.ia.title">Information Architecture & Feature Prioritization</h3>
+    <h4 class="h-sub" data-i18n="aupair.ia.sub">Core Navigation Structure</h4>
+    <ul class="bullets"><li data-i18n="aupair.ia.1"><strong>Task & Schedule Planner:</strong> Daily schedule views, child-specific agendas, and task reminders</li><li data-i18n="aupair.ia.2"><strong>Emotional Wellbeing:</strong> Daily mood check-ins, emotional history tracking, and stress metrics</li><li data-i18n="aupair.ia.3"><strong>Help & Guidance:</strong> Emergency action flows, communication templates for family discussions, and situation resolution</li><li data-i18n="aupair.ia.4"><strong>Resources & Community:</strong> Practical care tips, activity ideas, and local au pair networking</li></ul>
+    <p data-i18n="aupair.ia.text">These four core areas were prioritized to directly address the main pain points uncovered in research: lack of structure, emotional isolation, unclear boundaries, and limited peer support.</p>
+
+    <h3 class="h-section" data-i18n="aupair.testing.title">Concept Testing & Design Iterations</h3>
+    <h4 class="h-sub" data-i18n="aupair.testing.sub">Tested the prototype with 6 users through task-based usability sessions</h4>
+    <ul class="bullets"><li data-i18n="aupair.testing.1"><strong>Usability Sessions & Methodology:</strong> Tested the prototype with 6 active au pairs through task-based usability sessions to validate core navigation, feature clarity, and emotional relevance before finalizing high-fidelity screens</li><li data-i18n="aupair.testing.2"><strong>Core User Tasks Tested:</strong> Locate where to log daily mood, add a new task to the daily schedule, find immediate support when feeling overwhelmed or isolated, search for childcare activity ideas and resources</li></ul>
+  </div>
+  <img class="bleed" src="img/aupair-testing.webp" width="1800" height="1303" loading="lazy" decoding="async" alt="Hand holding a phone with the app&#x27;s help screen for difficult moments" data-i18n-alt="aupair.testing.alt">
+  <div class="wrap">
+    <h4 class="h-sub" data-i18n="aupair.findings.title">Key Findings & MVP Strategy Shift</h4>
+    <ul class="bullets"><li data-i18n="aupair.findings.1"><strong>Task vs. Static Content:</strong> Users prioritized instant problem-solving tools and daily task planning over static general guides</li><li data-i18n="aupair.findings.2"><strong>MVP Refinement:</strong> Streamlined the product scope to focus strictly on three high-value areas: daily task organization, immediate situation support, and emotional tracking</li></ul>
+    <div class="screens">
+      <img src="img/aupair-screen-1.webp" width="368" height="751" loading="lazy" decoding="async" alt="Emotional log screen (in Spanish)" data-i18n-alt="aupair.screen1.alt">
+      <img src="img/aupair-screen-2.webp" width="363" height="751" loading="lazy" decoding="async" alt="“Add an emotion” screen (in Spanish)" data-i18n-alt="aupair.screen2.alt">
+      <img src="img/aupair-screen-3.webp" width="366" height="761" loading="lazy" decoding="async" alt="Help screen for difficult moments (in Spanish)" data-i18n-alt="aupair.screen3.alt">
+    </div>
+    <h4 class="h-sub" data-i18n="aupair.refine.title">Usability Refinements</h4>
+    <ul class="bullets"><li data-i18n="aupair.refine.1"><strong>Emotional Tracking Screen:</strong> Replaced confusing status labels with a clear, direct Call-to-Action (“Add an emotion for today”) and streamlined statistical widgets</li><li data-i18n="aupair.refine.2"><strong>Home Dashboard:</strong> Reorganized vertical spacing, corrected color contrast issues, and introduced direct entry points for local community features</li><li data-i18n="aupair.refine.3"><strong>Contextual Support:</strong> Replaced static help texts with active assistance components (guided prompts and immediate action flows)</li></ul>
+    <div class="boards"><div class="board">
+      <div class="board-side"><img src="img/aupair-b1-before.webp" width="361" height="753" loading="lazy" decoding="async" alt="Emotional log screen before the changes (in Spanish)" data-i18n-alt="aupair.board1.before.alt"><div class="board-notes"><p class="board-label" data-i18n="aupair.board.beforeLabel">BEFORE:</p><ul><li data-i18n="aupair.board1.before1">Confusing CTA</li><li data-i18n="aupair.board1.before2">Information overload</li><li data-i18n="aupair.board1.before3">“I need help now” button</li></ul></div></div>
+      <div class="board-side"><img src="img/aupair-b1-after.webp" width="369" height="753" loading="lazy" decoding="async" alt="Emotional log screen after the changes (in Spanish)" data-i18n-alt="aupair.board1.after.alt"><div class="board-notes"><p class="board-label" data-i18n="aupair.board.afterLabel">AFTER:</p><ul><li data-i18n="aupair.board1.after1">Clear, prioritized CTA</li><li data-i18n="aupair.board1.after2">Functional information</li><li data-i18n="aupair.board1.after3">“See help options” button</li></ul></div></div>
+    </div><div class="board board-wide">
+      <div class="board-side"><img src="img/aupair-b2-before.webp" width="375" height="775" loading="lazy" decoding="async" alt="Home screen before the changes (in Spanish)" data-i18n-alt="aupair.board2.before.alt"><div class="board-notes"><p class="board-label" data-i18n="aupair.board.beforeLabel">BEFORE:</p><ul><li data-i18n="aupair.board2.before1">Excessive spacing</li><li data-i18n="aupair.board2.before2">Blotchy color effect</li><li data-i18n="aupair.board2.before3">Text sizes</li><li data-i18n="aupair.board2.before4">“See more” button</li></ul></div></div>
+      <div class="board-side"><img src="img/aupair-b2-after.webp" width="772" height="836" loading="lazy" decoding="async" alt="Home screen after the changes, two views (in Spanish)" data-i18n-alt="aupair.board2.after.alt"><div class="board-notes"><p class="board-label" data-i18n="aupair.board.afterLabel">AFTER:</p><ul><li data-i18n="aupair.board2.after1">Balanced spacing</li><li data-i18n="aupair.board2.after2">Colors and contrast</li><li data-i18n="aupair.board2.after3">Clear text hierarchy</li><li data-i18n="aupair.board2.after4">“Go to the Au Pair guide” button</li><li data-i18n="aupair.board2.after5">Access to the community</li></ul></div></div>
+    </div><div class="board">
+      <div class="board-side"><img src="img/aupair-b3-before.webp" width="404" height="834" loading="lazy" decoding="async" alt="Help screen with conversation examples, before the changes (in Spanish)" data-i18n-alt="aupair.board3.before.alt"><div class="board-notes"><p class="board-label" data-i18n="aupair.board.beforeLabel">BEFORE:</p><ul><li data-i18n="aupair.board3.before1">Static content</li><li data-i18n="aupair.board3.before2">CTA button</li></ul></div></div>
+      <div class="board-side"><img src="img/aupair-b3-after.webp" width="407" height="835" loading="lazy" decoding="async" alt="Help screen with the Au Pair assistant, after the changes (in Spanish)" data-i18n-alt="aupair.board3.after.alt"><div class="board-notes"><p class="board-label" data-i18n="aupair.board.afterLabel">AFTER:</p><ul><li data-i18n="aupair.board3.after1">Contextual help</li><li data-i18n="aupair.board3.after2">Optimized button</li></ul></div></div>
+    </div></div>
+
+    <h3 class="h-section" data-i18n="aupair.takeaways.title">Key Takeaways</h3>
+    <ul class="bullets"><li data-i18n="aupair.takeaways.1"><strong>More information wasn't the solution:</strong> Research showed that au pairs already had access to large amounts of information. The challenge was finding the right resource when they needed it</li><li data-i18n="aupair.takeaways.2"><strong>Prioritization shaped the MVP:</strong> Instead of trying to solve every pain point, we prioritized the Planner as the core feature based on user needs and feasibility</li><li data-i18n="aupair.takeaways.3"><strong>Testing challenged my assumptions:</strong> Some features and navigation patterns that seemed intuitive during the design phase were not immediately understood by users, leading to changes in the information architecture</li></ul>
+    <h3 class="h-section" data-i18n="aupair.next.title">Next Steps</h3>
+    <ul class="bullets"><li data-i18n="aupair.next.1"><strong>A/B Testing:</strong> Validate conversion rate and usability for the new quick-help flows</li><li data-i18n="aupair.next.2"><strong>Micro-interactions:</strong> Polish haptic feedback animations for daily mood tracking to boost engagement</li><li data-i18n="aupair.next.3"><strong>Community Discovery:</strong> Design a local networking tool enabling au pairs to connect with nearby peers, directly addressing the pain point of loneliness</li></ul>
+    
+  <div class="cta-end">
+    <p class="cta-note"><span data-i18n="cta.enjoyed">Enjoyed this case study? Let's connect!</span><img class="cta-arrow" src="img/arrow.webp" width="89" height="142" loading="lazy" decoding="async" alt=""></p>
+    <div class="btn-row">
+      <a class="btn btn-lg" href="#contact" data-i18n="btn.contactMe">Contact me</a>
+      <a class="btn btn-lg" href="#angel-fashion" data-i18n="btn.nextProject">Next project</a>
+    </div>
+  </div>
+  </div>
+</article>
+
+<article id="angel-fashion" class="case" aria-labelledby="angel-title">
+  <header class="case-head">
+    <h2 class="case-title" id="angel-title">Angel Fashion</h2>
+    <p class="band" data-i18n="angel.subtitle">Improving the digital experience of a beauty & wellness center</p>
+    <ul class="info-box"><li data-i18n="angel.info2"><strong>Role:</strong> Solo Product Designer · UX/UI</li><li data-i18n="angel.info3"><strong>Timeline:</strong> 4 weeks</li><li data-i18n="angel.info4"><strong>Tools:</strong> Figma · Lovable · Leveraged AI to generate initial content drafts, then refined them for tone, accuracy, and design direction</li><li data-i18n="angel.info5"><strong>Language:</strong> Italian</li><li data-i18n="angel.info6"><strong>Project type:</strong> UX/UI Case Study · Website Redesign</li></ul>
+  </header>
+  <img class="bleed" src="img/angel-hero.webp" width="1800" height="1123" loading="lazy" decoding="async" alt="Desktop monitor showing the redesigned Angel Fashion homepage" data-i18n-alt="angel.hero.alt">
+
+  <div class="wrap">
+    <div class="duo">
+      <section class="box">
+        <h3 class="h-box" data-i18n="angel.challenge.title">The challenge & Impact</h3>
+        <p class="intro" data-i18n="angel.challenge.intro">Angel Fashion is a beauty salon specializing in aesthetic treatments, nail care, and personal body care</p>
+        <ul class="bullets"><li data-i18n="angel.challenge.1"><strong>Broken UX & Low Trust:</strong> Low-contrast text, missing CTAs, duplicate navigation, and poor visual credibility undermined the salon's high-end brand positioning</li><li data-i18n="angel.challenge.2"><strong>Conversion Obstacles:</strong> Key information like pricing and services was hard to find, driving high bounce rates and lost booking opportunities</li><li data-i18n="angel.challenge.3"><strong>Operational Friction:</strong> Cognitive overload forced first-time visitors to call directly, burdening staff with basic administrative inquiries</li></ul>
+      </section>
+      <section class="box">
+        <h3 class="h-box" data-i18n="angel.solution.title">The solution</h3>
+        <p class="intro" data-i18n="angel.solution.intro">Redesign the website into an intuitive, high-converting storefront that builds instant trust and streamlines bookings</p>
+        <ul class="bullets"><li data-i18n="angel.solution.1"><strong>Trust & Authenticity First:</strong> Replacing generic stock photos with real salon photography, and swapping unverified text quotes for transparent Google Review integrations</li><li data-i18n="angel.solution.2"><strong>Information Architecture Cleanup:</strong> Merging duplicate navigation bars into a single, predictable structure centered around core user tasks</li><li data-i18n="angel.solution.3"><strong>Conversion & Accessibility:</strong> Restructure the visual hierarchy with WCAG-compliant contrast, clean UI elements, and persistent CTAs across all devices to streamline bookings</li></ul>
+      </section>
+    </div>
+
+    <h3 class="h-section" data-i18n="angel.audit.title">UX Audit & Key Insights</h3>
+    <section class="box box-wide">
+      <p class="intro" data-i18n="angel.audit.intro">To identify the root causes of bounce rates and friction, I conducted a heuristic audit of the current platform. The findings were mapped based on User Impact vs. Business Impact to prioritize solutions</p>
+      <ul class="bullets"><li data-i18n="angel.audit.1"><strong>Generic Stock Images Destroy Credibility:</strong> Generic stock photos replaced real work and staff, creating user doubt and friction during decision-making</li><li data-i18n="angel.audit.2"><strong>Text Density & Unprofessional Tone:</strong> AI-generated text blocks with system emojis and low contrast caused severe cognitive overload and poor visual accessibility</li><li data-i18n="angel.audit.3"><strong>Navigational Friction & Unusable CTAs:</strong> Stacked navigation menus and broken CTAs created severe navigation friction, causing users to drop off before booking</li><li data-i18n="angel.audit.4"><strong>Unverified Social Proof (“Dicono di Noi”):</strong> Unverified, text-only testimonials without names or photos raised user skepticism instead of building credibility</li></ul>
+    </section>
+
+    <h3 class="h-section" data-i18n="angel.ia.title">IA & Design Direction</h3>
+    <section class="box box-wide">
+      <p class="intro" data-i18n="angel.ia.intro">Before jumping into high-fidelity visuals, I restructured the site hierarchy to guide users smoothly through their decision-making process</p>
+      <ul class="bullets"><li data-i18n="angel.ia.1"><strong>Simplified Navigation:</strong> Combined the stacked header menus into a clean, single-tier bar</li><li data-i18n="angel.ia.2"><strong>Clear Service Categorization:</strong> Grouped scattered treatments into broad, recognizable categories</li><li data-i18n="angel.ia.3"><strong>Human & Welcoming Voice:</strong> Adapted content to speak directly to self-care, peace of mind, and time efficiency — addressing the core emotional reasons people book salon appointments</li><li data-i18n="angel.ia.4"><strong>Elevated Visual Identity:</strong> Established a warm, minimal color palette with accessible contrast ratios, paired with clean iconography to replace emojis</li><li data-i18n="angel.ia.5"><strong>Mobile-First Accessibility:</strong> Optimized touch targets, thumb-zone CTA placements, and scannable service cards for on-the-go browsing</li></ul>
+    </section>
+
+    <h3 class="h-section" data-i18n="angel.omni.title">Omnichannel Alignment: Social Media & Brand</h3>
+    <section class="box box-wide">
+      <h4 class="h-sub" data-i18n="angel.omni.sub">Brand Consistency & Audience Conversion</h4>
+      <p data-i18n="angel.omni.text">Parallel to the web redesign, I managed Angel Fashion's visual identity and social media ecosystem. By creating a unified design language across Instagram, Google Business Profiles, and the web platform, I aligned brand touchpoints to tell an authentic story — using strategic content to drive organic traffic directly into the high-converting web booking path.</p>
+      <div class="posts"><img src="img/angel-ig-1.webp" width="352" height="439" loading="lazy" decoding="async" alt="Instagram post for Mother’s Day: “Il regalo perfetto per la Festa della Mamma”" data-i18n-alt="angel.ig1.alt"><img src="img/angel-ig-2.webp" width="351" height="439" loading="lazy" decoding="async" alt="Instagram post: “Ogni trattamento è pensato per farti sentire speciale”" data-i18n-alt="angel.ig2.alt"><img src="img/angel-ig-3.webp" width="351" height="439" loading="lazy" decoding="async" alt="Instagram post teasing the next Angel Fashion location in Bologna" data-i18n-alt="angel.ig3.alt"><img src="img/angel-ig-4.webp" width="351" height="439" loading="lazy" decoding="async" alt="Instagram post for an exclusive collaboration with a 10% discount" data-i18n-alt="angel.ig4.alt"></div>
+      <img class="brand-logo" src="img/angel-logo.webp" width="180" height="129" loading="lazy" decoding="async" alt="Angel Fashion">
+    </section>
+
+    <h3 class="h-section" data-i18n="angel.redesign.title">The Redesign</h3>
+    <ul class="bullets"><li data-i18n="angel.redesign.1"><strong>Desktop Layout:</strong> Hero section with high-contrast typography, clear 3×2 treatment grid, verified Google Reviews section, and distinct location cards</li><li data-i18n="angel.redesign.2"><strong>Mobile Experience:</strong> Optimized single-column layout, dark-mode overlays for high contrast, collapsible hub cards for physical locations (Bologna / Casalecchio di Reno), and a clean hamburger menu overlay</li></ul>
+  </div>
+  <img class="bleed" src="img/angel-phone.webp" width="1800" height="1108" loading="lazy" decoding="async" alt="Hand holding a phone with the redesigned mobile homepage" data-i18n-alt="angel.phone.alt">
+  <div class="wrap">
+    <h3 class="h-section" data-i18n="angel.decisions.title">Key Design Decisions</h3>
+
+    <h4 class="h-sub" data-i18n="angel.nav.title">Header & Navigation Architecture</h4>
+    <ul class="bullets"><li data-i18n="angel.nav.before"><strong>Before:</strong> Stacked, chaotic double header with duplicate categories directly above, creating severe visual noise and confusing users</li></ul>
+  </div>
+  <img class="shot" src="img/angel-nav-before.webp" width="1800" height="902" loading="lazy" decoding="async" alt="Previous website: double stacked header and a red promotional banner" data-i18n-alt="angel.nav.before.alt">
+  <div class="wrap"><ul class="bullets"><li data-i18n="angel.nav.after"><strong>After:</strong> Unified single-tier navigation paired with a persistent, high-contrast gold CTA button (Prenota ora)</li></ul></div>
+  <img class="shot" src="img/angel-nav-after.webp" width="1800" height="1178" loading="lazy" decoding="async" alt="Redesigned header and hero: “Dove la bellezza incontra il relax”, with the gold “Prenota ora” button" data-i18n-alt="angel.nav.after.alt">
+
+  <div class="wrap">
+    <h4 class="h-sub" data-i18n="angel.hier.title">Visual Hierarchy & Content Scannability</h4>
+    <ul class="bullets"><li data-i18n="angel.hier.before"><strong>Before:</strong> Overwhelming SEO text blocks crammed with system emojis and low-contrast typography, giving an unprofessional impression that damaged brand credibility</li></ul>
+  </div>
+  <img class="shot" src="img/angel-content-before.webp" width="1800" height="1919" loading="lazy" decoding="async" alt="Previous website: long SEO text blocks with emojis, and treatment cards with stock photos" data-i18n-alt="angel.hier.before.alt">
+  <div class="wrap">
+    <ul class="bullets"><li data-i18n="angel.hier.after"><strong>After:</strong> Restructured content using a clean typography scale, generous white space, custom icons, and scannable treatment cards that communicate quality at a glance</li></ul>
+    <p class="insight"><svg class="insight-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M13 26h6M13.5 29h5M16 6a8 8 0 0 0-4.6 14.5c.8.6 1.1 1.4 1.1 2.3V23h7v-.2c0-.9.4-1.7 1.1-2.3A8 8 0 0 0 16 6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 2.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" fill="currentColor"/></svg><span data-i18n="angel.hier.insight"><strong>Key decisions:</strong> Replaced text-heavy paragraphs with structured cards featuring high-end photography and bite-sized descriptions, and replaced system emojis with refined brand icons and a clear typography hierarchy to elevate brand trust</span></p>
+    <img class="shot" src="img/angel-content-after.webp" width="1613" height="1643" loading="lazy" decoding="async" alt="Redesigned services grid with real photos and the “Perché scegliere Angel Fashion” section" data-i18n-alt="angel.hier.after.alt">
+
+    <h4 class="h-sub" data-i18n="angel.proof.title">Social Proof & Trust Indicators (“Dicono di noi”)</h4>
+    <ul class="bullets"><li data-i18n="angel.proof.before"><strong>Before:</strong> Plain-text, unverified testimonials without star ratings, reviewer sources, or credibility indicators, making them appear fabricated</li></ul>
+  </div>
+  <img class="shot" src="img/angel-reviews-before.webp" width="1800" height="903" loading="lazy" decoding="async" alt="Previous website: plain-text testimonials without sources" data-i18n-alt="angel.proof.before.alt">
+  <div class="wrap"><ul class="bullets"><li data-i18n="angel.proof.after"><strong>After:</strong> Integrated a verified Google Reviews section displaying actual customer feedback alongside an official Google Rating to validate trust immediately before the booking section</li></ul></div>
+  <img class="shot" src="img/angel-reviews-after.webp" width="1800" height="779" loading="lazy" decoding="async" alt="Redesigned reviews section “Cosa dicono di noi” with a 5.0 Google rating" data-i18n-alt="angel.proof.after.alt">
+
+  <div class="wrap">
+    <h4 class="h-sub" data-i18n="angel.mobile.title">Multi-Location Access & Mobile Experience</h4>
+    <ul class="bullets"><li data-i18n="angel.mobile.before"><strong>Before:</strong> Unoptimized mobile layout where users had to wade through endless text and generic stock photos to find physical locations or contact details</li></ul>
+    <img class="shot" src="img/angel-mobile-before.webp" width="1203" height="961" loading="lazy" decoding="async" alt="Previous mobile website: location cards with long text and the old menu" data-i18n-alt="angel.mobile.before.alt">
+    <ul class="bullets"><li data-i18n="angel.mobile.after"><strong>After:</strong> Grouped location cards into regional hubs (Bologna & Casalecchio di Reno) and introduced a clean mobile hamburger menu overlay, drastically reducing mobile scroll length and cognitive load</li></ul>
+    <img class="shot" src="img/angel-mobile-after.webp" width="1153" height="1092" loading="lazy" decoding="async" alt="Redesigned mobile: locations grouped into Bologna and Casalecchio di Reno, and the new menu" data-i18n-alt="angel.mobile.after.alt">
+
+    <h3 class="h-section" data-i18n="angel.next.title">Next Steps & Takeaways</h3>
+    <ul class="bullets"><li data-i18n="angel.next.1"><strong>Designing for Multi-Location Businesses:</strong> Structuring navigation for multiple physical salons requires balancing local SEO needs with clean, uncluttered mobile UX</li><li data-i18n="angel.next.2"><strong>The Power of Verified Proof:</strong> Integrating real photos and verified Google ratings directly into key decision points is as critical to conversion as clean visual design</li><li data-i18n="angel.next.3"><strong>End-to-End Brand Cohesion:</strong> Connecting social media content strategy with UI design creates a unified experience that reinforces customer trust across all digital touchpoints</li></ul>
+    
+  <div class="cta-end">
+    <p class="cta-note"><span data-i18n="cta.enjoyed">Enjoyed this case study? Let's connect!</span><img class="cta-arrow" src="img/arrow.webp" width="89" height="142" loading="lazy" decoding="async" alt=""></p>
+    <div class="btn-row">
+      <a class="btn btn-lg" href="#contact" data-i18n="btn.contactMe">Contact me</a>
+      <a class="btn btn-lg" href="#realidad-aupair" data-i18n="btn.nextProject">Next project</a>
+    </div>
+  </div>
+  </div>
+</article>
+
+<section id="contact" class="contact" aria-labelledby="contact-title">
+  <img class="flower flower-contact" src="img/flower-contact.webp" width="254" height="275" loading="lazy" decoding="async" alt="">
+  <h2 class="giant" id="contact-title" data-i18n="contact.title">Contact me</h2>
+  <p class="intro" data-i18n="contact.subtitle">Let's connect and build something meaningful together</p>
+  <p class="lead" data-i18n="contact.text">Whether you have an open Junior UX/UI position, a freelance project, or just want to say hi, my inbox is always open!</p>
+  <ul class="contact-list">
+    <li><a href="https://wa.me/393445443117" target="_blank" rel="noopener"><img src="img/icon-whatsapp.webp" width="99" height="100" loading="lazy" decoding="async" alt="WhatsApp"><span>+39 3445443117</span><span class="sr-only" data-i18n="contact.newtab"> (opens in a new tab)</span></a></li>
+    <li><a href="https://www.linkedin.com/in/nathalie-g%C3%B3mez" target="_blank" rel="noopener"><img src="img/icon-linkedin.webp" width="115" height="114" loading="lazy" decoding="async" alt="LinkedIn"><span>www.linkedin.com/in/nathalie-gómez</span><span class="sr-only" data-i18n="contact.newtab"> (opens in a new tab)</span></a></li>
+    <li><a class="mail-link" href="mailto:nathalia8gomez@gmail.com"><img src="img/icon-gmail.webp" width="115" height="87" loading="lazy" decoding="async" alt="Email" data-i18n-alt="contact.email.alt"><span>nathalia8gomez@gmail.com</span></a></li>
+  </ul>
+  <p class="band band-left" data-i18n="contact.location"><u>Location &amp; Availability</u>: Based in Italy · Open to full-time remote &amp; hybrid roles</p>
+  <div class="btn-row">
+    <a class="btn btn-lg" href="#about" data-i18n="btn.aboutMe">About me</a>
+    <a class="btn btn-lg" href="#work" data-i18n="btn.viewWork">View my work</a>
+  </div>
 </section>
+
+</main>
 
 <div id="mobmenu" class="mobmenu">
-  <button class="mobmenu-close" onclick="location.hash='home-top'" aria-label="Close menu" data-i18n-aria="closeMenu">&times;</button>
-  <a href="#home-top" data-i18n="home">Home</a>
-  <a href="#about" data-i18n="about">About</a>
-  <a href="#contact" data-i18n="contact">Contact</a>
-  <a href="#work" class="work-link" data-i18n="work">View my work</a>
-  <div class="lang-switch mobile-lang" role="group" aria-label="Language" data-i18n-aria="langGroup">
+  <a href="#" class="mobmenu-close" id="menuClose" aria-label="Close menu" data-i18n-aria="nav.closeMenu"><span aria-hidden="true">&times;</span></a>
+  <a href="#home-top" data-i18n="nav.home">Home</a>
+  <a href="#about" data-i18n="nav.about">About</a>
+  <a href="#contact" data-i18n="nav.contact">Contact</a>
+  <a href="#work" class="work-link" data-i18n="nav.work">View my work</a>
+  <div class="lang-switch mobile-lang" role="group" aria-label="Language" data-i18n-aria="nav.language">
     <button type="button" data-lang="en" lang="en" class="lang-btn active" aria-pressed="true" aria-label="English">EN</button><span class="lang-sep" aria-hidden="true">·</span><button type="button" data-lang="es" lang="es" class="lang-btn" aria-pressed="false" aria-label="Español">ES</button><span class="lang-sep" aria-hidden="true">·</span><button type="button" data-lang="it" lang="it" class="lang-btn" aria-pressed="false" aria-label="Italiano">IT</button>
   </div>
 </div>
 
 <script src="i18n.js"></script>
 <script>
-document.getElementById('burgerBtn').addEventListener('click', function(){
+// Mobile menu (works without JS too, through #mobmenu / :target)
+var burger = document.getElementById('burgerBtn'), menu = document.getElementById('mobmenu');
+function closeMenu(){ menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }
+burger.setAttribute('aria-expanded', 'false');
+burger.addEventListener('click', function(e){
+  e.preventDefault();
   var sections = [
     {id:'home-top', link:'home-top'},
     {id:'work', link:'work'},
@@ -170,58 +606,35 @@ document.getElementById('burgerBtn').addEventListener('click', function(){
   var current = 'home-top';
   sections.forEach(function(s){
     var el = document.getElementById(s.id);
-    if(el && el.offsetTop <= scrollPos) current = s.link;
+    if(el && el.getBoundingClientRect().top + window.scrollY <= scrollPos) current = s.link;
   });
-  document.querySelectorAll('.mobmenu a[href^="#"]').forEach(function(a){
-    a.classList.remove('active');
-    if(a.getAttribute('href') === '#'+current) a.classList.add('active');
+  menu.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.classList.toggle('active', a.getAttribute('href') === '#'+current);
   });
+  menu.classList.add('open');
+  burger.setAttribute('aria-expanded', 'true');
+  menu.querySelector('a').focus();
 });
+document.getElementById('menuClose').addEventListener('click', function(e){ e.preventDefault(); closeMenu(); burger.focus(); });
+menu.querySelectorAll('a:not(#menuClose)').forEach(function(a){ a.addEventListener('click', closeMenu); });
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && menu.classList.contains('open')){ closeMenu(); burger.focus(); } });
 
-// Language switcher — texts live in i18n.js (EN · ES · IT).
-// Translates: menu, page title, aria-labels, the <html lang> attribute and the screen-reader
-// copy of every screen. Screens with a translated export listed in PORTFOLIO_I18N_IMAGES
-// (img/es/…, img/it/…) are swapped too; the rest keep the English image.
+// Language switcher — every text on the page has a key (data-i18n) with its EN/ES/IT version in i18n.js
 var I18N = window.PORTFOLIO_I18N || {};
-var I18N_IMAGES = window.PORTFOLIO_I18N_IMAGES || {};
 var LANGS = ['en','es','it'];
-
-function escapeAttr(t){ return String(t).replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
-function renderText(lines){
-  var html = '', inList = false;
-  (lines || []).forEach(function(line){
-    var i = line.indexOf('|'), tag = line.slice(0,i), body = line.slice(i+1);
-    if(tag === 'li' && !inList){ html += '<ul>'; inList = true; }
-    if(tag !== 'li' && inList){ html += '</ul>'; inList = false; }
-    if(tag === 'quote') html += '<blockquote><p>' + body + '</p></blockquote>';
-    else html += '<' + tag + '>' + body + '</' + tag + '>';
-  });
-  return html + (inList ? '</ul>' : '');
-}
-function hasTranslatedImage(lang, name){
-  var list = I18N_IMAGES[lang];
-  return list === '*' || (Array.isArray(list) && list.indexOf(name) !== -1);
-}
 function setLang(lang){
-  if(LANGS.indexOf(lang) === -1 || !I18N[lang]) lang = 'en';
-  var pack = I18N[lang], ui = pack.ui;
+  if(LANGS.indexOf(lang) === -1) lang = 'en';
+  function tr(key){ var e = I18N[key]; return e ? (e[lang] || e.en) : null; }
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i18n]').forEach(function(el){
-    var key = el.getAttribute('data-i18n');
-    if(ui[key]) el.textContent = ui[key];
+    var v = tr(el.getAttribute('data-i18n'));
+    if(v !== null) el.innerHTML = v;
   });
-  document.querySelectorAll('[data-i18n-aria]').forEach(function(el){
-    var key = el.getAttribute('data-i18n-aria');
-    if(ui[key]) el.setAttribute('aria-label', ui[key]);
-  });
-  document.querySelectorAll('[data-sr]').forEach(function(el){
-    el.innerHTML = renderText(pack.text[el.getAttribute('data-sr')]);
-  });
-  document.querySelectorAll('img[data-img]').forEach(function(img){
-    var name = img.getAttribute('data-img');
-    var folder = (lang !== 'en' && hasTranslatedImage(lang, name)) ? lang : 'en';
-    var src = 'img/' + folder + '/' + name + '.webp';
-    if(img.getAttribute('src') !== src) img.setAttribute('src', src);
+  [['data-i18n-alt','alt'], ['data-i18n-aria','aria-label'], ['data-i18n-content','content']].forEach(function(p){
+    document.querySelectorAll('['+p[0]+']').forEach(function(el){
+      var v = tr(el.getAttribute(p[0]));
+      if(v !== null) el.setAttribute(p[1], v.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&'));
+    });
   });
   document.querySelectorAll('.lang-btn').forEach(function(b){
     var on = b.getAttribute('data-lang') === lang;
@@ -236,8 +649,9 @@ document.querySelectorAll('.lang-btn').forEach(function(btn){
 (function(){
   var saved = 'en';
   try { saved = localStorage.getItem('portfolioLang') || 'en'; } catch(e){}
-  setLang(saved);
+  if(saved !== 'en') setLang(saved);
 })();
+
 </script>
 
 </body>
